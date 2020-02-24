@@ -1,0 +1,31 @@
+<mat-card>
+  <div class="mb-8">
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar && !items"></mat-progress-bar>
+  </div>
+  <div fxLayout="row" class="header">
+    <h2-heading [icon]="icon">{{headerTitle}}</h2-heading>
+    <div class="buttons">
+    <button matTooltip="Fit columns to grid" mat-icon-button class="mb-8" (click)="fitColumns()">
+      <mat-icon>view_column</mat-icon>
+    </button>
+    <button matTooltip="Restore columns" mat-icon-button class="mb-8" (click)="restoreColumns()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+    </div>
+  </div>
+  <ag-grid-angular *ngIf="columnDefs.length > 0"
+                   class="ag-theme-material ag-grid-angular mat-elevation-z0"
+                   [rowData]="items"
+                   [columnDefs]="columnDefs"
+                   pagination="true"
+                   paginationAutoPageSize="true"
+                   (firstDataRendered)="onFirstDataRendered($event)"
+                   rowSelection="multiple"
+                   (selectionChanged)="selectionChanged.emit($event)"
+                   (gridReady)="onGridReady($event)"
+                   enableCellTextSelection="true"
+                   suppressCellSelection="true"
+  >
+  </ag-grid-angular>
+  <ng-content></ng-content>
+</mat-card>

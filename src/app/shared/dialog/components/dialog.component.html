@@ -1,0 +1,23 @@
+<div class="page-layout blank p-4">
+
+    <div class="mb-16 logo">
+        <div *ngIf="data.type==dialogType.Error">
+            <mat-icon id="error" class="icon-error_outline"></mat-icon>
+        </div>
+        <div *ngIf="data.type==dialogType.Warn">
+            <mat-icon id="warn">warning</mat-icon>
+        </div>
+        <div *ngIf="data.type==dialogType.Info">
+            <mat-icon id="info">info</mat-icon>
+        </div>
+    </div>
+
+    <div>
+        <dl>
+            <dt>{{data.title}}</dt>
+            <dt *ngIf="data.code">Code: {{data.code}}</dt>
+            <dd>{{data.message}}</dd>
+
+        </dl>
+    </div>
+</div>

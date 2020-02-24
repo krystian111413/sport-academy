@@ -1,0 +1,35 @@
+<form [formGroup]="objectForm">
+    <p *ngIf="processParameters && processParameters.length === 0">*- No parameters required</p>
+    <div *ngFor="let param of processParameters">
+        <!--   ENUM   -->
+        <mat-form-field appearance="outline" *ngIf="param.type === 'enum'">
+            <mat-label>{{param.caption}}</mat-label>
+            <mat-select [formControlName]="param.name">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let value of param.values" [value]="value">
+                    {{value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <!--   STRING   -->
+        <mat-form-field appearance="outline" *ngIf="param.type === 'string'">
+            <mat-label>{{param.caption}}</mat-label>
+            <input matInput [placeholder]="param.caption" [formControlName]="param.name">
+        </mat-form-field>
+        <!--   NUMBER   -->
+        <mat-form-field appearance="outline" *ngIf="param.type === 'number'">
+            <mat-label>{{param.caption}}</mat-label>
+            <input matInput type="number" [placeholder]="param.caption" [formControlName]="param.name">
+        </mat-form-field>
+        <!--   DATE   -->
+        <div *ngIf="param.type === 'date'">
+            <date-picker appearance="outline" [placeholder]="param.caption" [formControlName]="param.name" [isRequired]="true"></date-picker>
+        </div>
+        <!--   BOOLEAN   -->
+        <mat-slide-toggle *ngIf="param.type === 'boolean'" [formControlName]="param.name">{{param.caption}}</mat-slide-toggle>
+
+
+    </div>
+</form>
+
+

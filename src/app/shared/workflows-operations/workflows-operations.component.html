@@ -1,0 +1,64 @@
+<div class="page-layout blank p-24">
+    <div class="styled-container mat-elevation-z1 mb-12">
+        <mat-horizontal-stepper #stepper [linear]="true">
+            <!--  FIRST STEP  -->
+            <mat-step [stepControl]="listFormGroup">
+                <form [formGroup]="listFormGroup">
+                    <ng-template matStepLabel>Select elements</ng-template>
+                    <workflows-operations-list formControlName="selectedElements" [items]="items"
+                                               [columns]="columnsDef"></workflows-operations-list>
+                    <div class="pt-8">
+                        <button mat-raised-button matStepperNext [disabled]="!listFormGroup.valid">Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <!--  SECOND STEP  -->
+            <mat-step [stepControl]="operationFormGroup">
+                <form [formGroup]="operationFormGroup">
+                    <ng-template matStepLabel>Choose workflow</ng-template>
+                    <div class="mt-12" *ngIf="workflowsConfigType">
+                        <workflows-operations-operations formControlName="operation" [workflows]="workflowsConfigType.workflows"
+                                                         (ngModelChange)="resetThirdAndLastStep(stepper)"></workflows-operations-operations>
+                        <div class="pt-8">
+                            <button class="mr-8" mat-raised-button matStepperPrevious>Back</button>
+                            <button mat-raised-button matStepperNext [disabled]="!operationFormGroup.valid">Next</button>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+            <!--  THIRD STEP  -->
+            <mat-step [stepControl]="specificForActionFormGroup">
+                <form [formGroup]="specificForActionFormGroup">
+                    <ng-template matStepLabel>Workflow parameters</ng-template>
+                    <workflows-operation-specific-content formControlName="payloadForRequest"
+                                                          [processParameters]="getProcessParametersFromSelectedWorkflow()"></workflows-operation-specific-content>
+                </form>
+                <div class="pt-8">
+                    <button class="mr-8" mat-raised-button matStepperPrevious>Back</button>
+                    <button mat-raised-button matStepperNext [disabled]="!specificForActionFormGroup.valid">Next</button>
+                </div>
+            </mat-step>
+            <!--  LAST STEP  -->
+            <mat-step>
+                <ng-template matStepLabel>Confirmation</ng-template>
+                <div>
+                    <mat-list>
+                        <mat-list-item>Elements count: {{getCountOfSelectedElements()}}</mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>Workflow: {{getSelectedWorkflowCaption()}}</mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>Workflow parameters:
+                        </mat-list-item>
+                    </mat-list>
+                    <ngx-json-viewer class="ml=16" [json]="getSpecificOperationPayload()"></ngx-json-viewer>
+                    <mat-divider></mat-divider>
+                </div>
+                <div class="pt-8 mt-16">
+                    <button class="mr-8" mat-raised-button matStepperPrevious>Back</button>
+                    <button class="mr-8" mat-raised-button (click)="stepper.reset()">Reset</button>
+                    <button mat-raised-button color="accent" (click)="onConfirm()">Confirm</button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+</div>

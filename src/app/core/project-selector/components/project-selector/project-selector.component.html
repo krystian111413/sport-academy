@@ -1,0 +1,10 @@
+<form [formGroup]="formGroup">
+  <mat-form-field>
+    <mat-select formControlName="projectSelected">
+      <mat-option value="">All Projects</mat-option>
+      <mat-option *ngFor="let project of projects" [value]="project.name">
+        {{project.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

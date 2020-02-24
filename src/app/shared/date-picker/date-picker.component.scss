@@ -1,0 +1,11 @@
+input {
+    cursor: pointer;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.mat-form-field-appearance-outline ::ng-deep .mat-form-field-infix {
+    padding: 0.3em;
+}

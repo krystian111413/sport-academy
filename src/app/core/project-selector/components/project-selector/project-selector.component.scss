@@ -1,0 +1,6 @@
+mat-form-field {
+  min-width: 85px;
+}
+::ng-deep .mat-form-field-underline {
+  display: none;
+}

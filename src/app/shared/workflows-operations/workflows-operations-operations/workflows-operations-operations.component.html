@@ -1,0 +1,3 @@
+<mat-radio-group aria-label="Select an option" [(ngModel)]="workflowSelected" (ngModelChange)="onSelect()">
+    <mat-radio-button *ngFor="let workflow of workflows" [value]="workflow.name">{{workflow.caption}}</mat-radio-button>
+</mat-radio-group>

@@ -1,0 +1,7 @@
+<ag-list [items]="items"
+         headerTitle="Elements"
+         icon="list"
+         (selectionChanged)="onChange($event.api.getSelectedRows())"
+         (agGridApi)="agGridApi = $event"
+         [columnDefs]="columns">
+</ag-list>

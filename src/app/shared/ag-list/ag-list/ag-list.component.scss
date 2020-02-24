@@ -1,0 +1,15 @@
+.ag-grid-angular {
+    width: 100%;
+    height: 72vh;
+}
+.header {
+  display: flex;
+}
+.buttons {
+  margin-left: auto;
+  order: 2;
+}
+
+::ng-deep .ag-theme-material .ag-tooltip {
+  background-color: white;
+}

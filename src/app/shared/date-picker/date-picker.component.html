@@ -1,0 +1,13 @@
+<mat-form-field [appearance]="appearance" >
+    <mat-label>{{placeholder}}</mat-label>
+    <div fxLayout="row">
+        <input #datePickerInput matInput [matDatepicker]="datePicker" placeholder="{{placeholder}}"
+               (dateChange)="onChangeListener($event)" [formControl]="date" (click)="datePicker.open()" readonly>
+        <button *ngIf="datePickerInput.value" mat-button matSuffix mat-icon-button
+                aria-label="Clear" (click)="datePicker.select(undefined)">
+            <mat-icon>close</mat-icon>
+        </button>
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+    </div>
+    <mat-datepicker #datePicker></mat-datepicker>
+</mat-form-field>
