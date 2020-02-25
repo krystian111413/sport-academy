@@ -14,29 +14,9 @@ export class NavigationComponent {
 
   menuConfigItems: NavMenuItem[] = [
     {
-      name: 'Measurements',
-      url: '/measurements',
-      iconName: 'local_movies'
-    },
-    {
-      name: 'Calculation Models',
-      url: '/calculation-models',
-      iconName: 'commute'
-    },
-    {
-      name: 'Resimulations',
-      url: '/resimulations',
-      iconName: 'loop'
-    },
-    {
-      name: 'Workflows',
-      url: '/workflows',
-      iconName: 'toys'
-    },
-    {
-      name: 'Assets',
-      url: '/assets',
-      iconName: 'directions_car'
+      name: 'Employees',
+      url: '/employees',
+      iconName: 'people'
     }
   ];
 

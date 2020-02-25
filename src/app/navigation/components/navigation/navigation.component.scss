@@ -10,7 +10,7 @@ a {
 
 .sidenav {
   width: 280px;
-  background-color: #2D323E !important;
+  background-color: #0097b7 !important;
   color: white !important;
 }
 
@@ -25,7 +25,9 @@ a {
 }
 
 .mat-toolbar-general {
-  background: inherit;
+  background-color: #0097b7;
+  color: white;
+  height: 44px;
   //border: 1px solid;
   padding: 10px;
   box-shadow: 1px 1px 3px #888888;
@@ -38,8 +40,9 @@ a {
 }
 
 .toolbar-menu {
-  background-color: #1E2129 !important;
-  color: white !important;
+  background-color: #0097b7;
+  color: white;
+  height: 44px;
   div {
     text-align: center;
     line-height: 64px;
@@ -51,5 +54,7 @@ a {
   }
 }
 img {
-  max-width: 65px;
+  margin-top: 8px;
+  max-width: 45px;
 }
+

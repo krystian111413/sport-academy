@@ -1,0 +1,24 @@
+.desc {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 184px;
+}
+
+.general {
+  background-color: white;
+}
+
+.general:hover {
+  background-color: #006885;
+  cursor: pointer;
+  color: white;
+}
+
+p {
+  padding: 1px;
+  margin: 1px;
+}
+
+.wasClicked {
+  background-color: rgba(0, 60, 82, 0.11);
+}

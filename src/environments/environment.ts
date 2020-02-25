@@ -11,6 +11,7 @@ export const environment = {
   httpRequestTimeout: 511000,
   pageSizeOptions: [25, 50, 100],
   colors: {
+    projectColor: '#0097b7',
     success: '#7AF691',
     warning: '#FD5E65',
     default: '#4091F7'
@@ -27,7 +28,7 @@ export const environment = {
       skipped: '#db7bb3'
     }
   },
-  projectName: 'Katana Blades'
+  projectName: 'Sport Academy'
 };
 
 /*

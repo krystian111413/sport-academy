@@ -1,0 +1,8 @@
+<div fxLayout="row" class="general" [class.wasClicked]="notificationItem.wasClicked" routerLink="/employees/{{notificationItem.id}}">
+  <div fxLayout="column" class="p-8">
+    <p><strong>{{notificationItem.name}}</strong></p>
+    <p><strong>{{notificationItem.surname}}</strong></p>
+  </div>
+  <p class="desc">{{notificationItem.description}}</p>
+</div>
+<mat-divider></mat-divider>
