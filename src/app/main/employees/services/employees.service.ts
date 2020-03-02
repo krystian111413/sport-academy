@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {CrudService} from "../../core/crud/services/crud.service";
+import {CrudService} from "../../../core/crud/services/crud.service";
 import {Employee} from "../models/employee";
-import {RestService} from "../../core/services/rest/rest.service";
+import {RestService} from "../../../core/services/rest/rest.service";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 

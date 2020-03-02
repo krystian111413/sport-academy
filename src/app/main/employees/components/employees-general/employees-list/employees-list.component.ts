@@ -22,7 +22,7 @@ export class EmployeesListComponent implements OnInit {
       filter: true,
       resizable: true,
       onCellClicked: event => {
-        this.router.navigateByUrl(`/employees/${event.data.id}`);
+        this.router.navigateByUrl(`/main/employees/${event.data.id}`);
       },
       cellRenderer: params => {
         return `<a style="color: dodgerblue">${params.value}</a>`;

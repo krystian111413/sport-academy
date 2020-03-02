@@ -1,0 +1,25 @@
+<div class="login">
+  <mat-card>
+    <h2-heading>Login</h2-heading>
+    <form [formGroup]="loginForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Login</mat-label>
+        <div fxLayout="row">
+          <input matInput formControlName="login" placeholder="Type login...">
+          <mat-icon>person_outline</mat-icon>
+        </div>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <div fxLayout="row">
+          <input type="password" matInput formControlName="password" placeholder="Type password...">
+          <mat-icon>edit</mat-icon>
+        </div>
+      </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" (click)="requestToLogin()" [disabled]="!loginForm.valid">
+      Confirm
+      <mat-icon>done_outline</mat-icon>
+    </button>
+  </mat-card>
+</div>

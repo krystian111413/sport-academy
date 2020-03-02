@@ -1,0 +1,10 @@
+<button mat-button [matMenuTriggerFor]="menu">
+  Profile
+  <mat-icon>account_circle</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-flat-button (click)="logout()">
+    <mat-icon>input</mat-icon>
+    Logout
+  </button>
+</mat-menu>

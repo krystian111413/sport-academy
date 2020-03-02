@@ -13,10 +13,11 @@ import {ProjectSelectorModule} from "../core/project-selector/project-selector.m
 import { NotificationsComponent } from './components/navigation/notifications/notifications.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { NotificationItemComponent } from './components/navigation/notifications/notification-item/notification-item.component';
+import { ProfilerComponent } from './components/navigation/profiler/profiler.component';
 
 
 @NgModule({
-  declarations: [NavMenuItemsComponent, NavigationComponent, NotificationsComponent, NotificationItemComponent],
+  declarations: [NavMenuItemsComponent, NavigationComponent, NotificationsComponent, NotificationItemComponent, ProfilerComponent],
   imports: [
     CommonModule,
     MatSidenavModule,

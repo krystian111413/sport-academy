@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 
 import {EmployeesRoutingModule} from './employees-routing.module';
 import {EmployeesListComponent} from './components/employees-general/employees-list/employees-list.component';
-import {AgListModule} from '../shared/ag-list/ag-list.module';
+import {AgListModule} from '../../shared/ag-list/ag-list.module';
 import {MatIconModule} from '@angular/material/icon';
 import {EmployeesGeneralComponent} from './components/employees-general/employees-general.component';
 import {EmployeesDetailsComponent} from './components/employees-details/employees-details.component';
