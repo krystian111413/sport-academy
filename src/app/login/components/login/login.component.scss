@@ -12,6 +12,7 @@ mat-card {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 30vw;
+  min-width: min-content;
 }
 
 .login {
