@@ -18,7 +18,7 @@ export class EmployeesAddComponent implements OnInit {
   personalAddressForm: FormGroup;
   taxOfficeAddressForm: FormGroup;
   lifeguardForm: FormGroup;
-  private firstAidForm: FormGroup;
+  firstAidForm: FormGroup;
   usefulPermissions: UsefulPermission[] = [
     UsefulPermission.frogman,
     UsefulPermission.helmsman,

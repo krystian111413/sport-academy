@@ -19,7 +19,7 @@ export class EmployeesDetailsComponent implements OnInit {
   taxOfficeAddressForm: FormGroup;
   lifeguardForm: FormGroup;
   id: string;
-  private firstAidForm: FormGroup;
+  firstAidForm: FormGroup;
   usefulPermissions: UsefulPermission[] = [
     UsefulPermission.frogman,
     UsefulPermission.helmsman,
