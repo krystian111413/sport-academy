@@ -9,7 +9,7 @@ const routes: Routes = [
     component: MainComponent,
     loadChildren: () => import('./employees/employees.module').then(value => value.EmployeesModule),
     data: {
-      breadcrumb: 'employees'
+      breadcrumb: 'pracownicy'
     },
   },
   {

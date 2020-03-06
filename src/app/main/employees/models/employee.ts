@@ -1,8 +1,50 @@
+export interface Address {
+  street: string;
+  city: string;
+  buildingNumber: string;
+  code: string;
+}
+
+export enum UsefulPermission {
+  helmsman = 'Sternik',
+  powerboating = 'Motorowodny',
+  yachtSailor = 'Żeglarz Jachtowy',
+  frogman = 'Płetwonurek',
+  swimmingInstructor = 'Instruktor Pływania',
+}
+
 export interface Employee {
   id: number;
-  name: string;
-  surname: string;
-  city: string;
+  firstName: string;
+  surName: string;
   pesel: string;
-  age: number;
+  personalAddress: Address;
+  taxOfficeAddress: Address;
+  yearOfBirthday: number;
+  permissions: {
+    lifeguard: {
+      refreshedDate: string;
+      endDate: string;
+    },
+    firstAid: {
+      refreshedDate: string;
+      endDate: string;
+    },
+    usefulPermissions: UsefulPermission[],
+    anotherPermission: string;
+    medicalExamination: {
+      refreshedDate: string;
+      endDate: string;
+    },
+    OHSTests: {
+      refreshedDate: string;
+      endDate: string;
+    },
+    sanel: {
+      endDate: string;
+    },
+    studentCard: {
+      endDate: string;
+    }
+  }
 }

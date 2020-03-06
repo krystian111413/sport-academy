@@ -69,19 +69,19 @@
         <mat-card-title>Uprawnienia</mat-card-title>
         <form [formGroup]="permissionsGroup">
 
-        <form [formGroup]="lifeguardForm">
-          <mat-card-subtitle>Ratownik Wodny</mat-card-subtitle>
-          <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
-          <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
-        </form>
+          <form [formGroup]="lifeguardForm">
+            <mat-card-subtitle>Ratownik Wodny</mat-card-subtitle>
+            <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
+            <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
+          </form>
 
-        <form [formGroup]="firstAidForm">
-          <mat-card-subtitle>Kurs Kwalifikowanej Pierwszej Pomocy</mat-card-subtitle>
-          <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
-          <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
-        </form>
+          <form [formGroup]="firstAidForm">
+            <mat-card-subtitle>Kurs Kwalifikowanej Pierwszej Pomocy</mat-card-subtitle>
+            <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
+            <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
+          </form>
 
-        <mat-card-subtitle>Uprawnienia przydatne w ratownictwie</mat-card-subtitle>
+          <mat-card-subtitle>Uprawnienia przydatne w ratownictwie</mat-card-subtitle>
           <mat-form-field>
             <mat-label>Uprawnienia</mat-label>
             <mat-select formControlName="usefulPermissions" multiple>

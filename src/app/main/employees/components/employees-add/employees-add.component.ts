@@ -1,24 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UsefulPermission} from '../../models/employee';
 import {EmployeesService} from '../../services/employees.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
-import {UsefulPermission} from '../../models/employee';
 
 @Component({
-  selector: 'employees-details',
-  templateUrl: './employees-details.component.html',
-  styleUrls: ['./employees-details.component.scss']
+  selector: 'employees-add',
+  templateUrl: './employees-add.component.html',
+  styleUrls: ['./employees-add.component.scss']
 })
-export class EmployeesDetailsComponent implements OnInit {
+export class EmployeesAddComponent implements OnInit {
 
   formGroup: FormGroup;
   permissionsGroup: FormGroup;
   personalAddressForm: FormGroup;
   taxOfficeAddressForm: FormGroup;
   lifeguardForm: FormGroup;
-  id: string;
   private firstAidForm: FormGroup;
   usefulPermissions: UsefulPermission[] = [
     UsefulPermission.frogman,
@@ -91,28 +90,19 @@ export class EmployeesDetailsComponent implements OnInit {
       permissions: this.permissionsGroup
 
     });
-    this.id = activatedRoute.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
-    this.downloadEmployeeAndApplyToForm();
   }
 
   onSave(): void {
-    console.log(this.formGroup.value);
-    this.employeesService.update(this.id, this.formGroup.value).subscribe(success => {
+    this.employeesService.add(this.formGroup.value).subscribe(success => {
       if (success) {
-        this.toastrService.success('Employee saved');
+        this.toastrService.success('Pracownik dodany');
         this.location.back();
       } else {
-        this.toastrService.error('Error occurs while saving employee');
+        this.toastrService.error('Bład podczas dodawnia pracownika');
       }
     });
-  }
-
-  private downloadEmployeeAndApplyToForm(): void {
-    this.employeesService.getInstance(this.id).subscribe(value => {
-      this.formGroup.setValue(value);
-    })
   }
 }

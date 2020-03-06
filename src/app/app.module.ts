@@ -17,6 +17,7 @@ import {AgGridModule} from "ag-grid-angular";
 import {ToastrModule} from "ngx-toastr";
 import {NavigationModule} from "./navigation/navigation.module";
 import {HttpClientModule} from "@angular/common/http";
+import {MatNativeDateModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {HttpClientModule} from "@angular/common/http";
     SharedModule,
     CoreModule,
     NavigationModule,
+    MatNativeDateModule,
 
     AgGridModule.withComponents([]),
     ToastrModule.forRoot({

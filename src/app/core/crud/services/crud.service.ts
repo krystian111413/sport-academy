@@ -19,7 +19,7 @@ export abstract class CrudService<INSTANCE_DTO, INSTANCE_CREATE_DTO> implements 
         return this.restService.get<ListResponse<INSTANCE_DTO>>(this.path, {params: criteriaBuilder ? criteriaBuilder.toJSON() : undefined});
     }
 
-    getInstance(id: number): Observable<INSTANCE_DTO> {
+    getInstance(id: number | string): Observable<INSTANCE_DTO> {
         return this.restService.get<INSTANCE_DTO>(`${this.path}/${id}`);
     }
 

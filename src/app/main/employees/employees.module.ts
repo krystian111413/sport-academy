@@ -11,10 +11,13 @@ import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {DatePickerModule} from '../../shared/date-picker/date-picker.module';
+import {MatSelectModule} from '@angular/material';
+import {EmployeesAddComponent} from './components/employees-add/employees-add.component';
 
 
 @NgModule({
-  declarations: [EmployeesListComponent, EmployeesGeneralComponent, EmployeesDetailsComponent],
+  declarations: [EmployeesListComponent, EmployeesGeneralComponent, EmployeesDetailsComponent, EmployeesAddComponent],
   imports: [
     CommonModule,
     EmployeesRoutingModule,
@@ -23,7 +26,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    DatePickerModule,
+    MatSelectModule
   ]
 })
 export class EmployeesModule { }
