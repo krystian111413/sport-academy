@@ -31,12 +31,17 @@ export class EmployeesDetailsComponent implements OnInit {
   OHSTestsForm: FormGroup;
   sanelForm: FormGroup;
   studentCardForm: FormGroup;
+  dealForm: FormGroup;
 
   constructor(private employeesService: EmployeesService,
               formBuilder: FormBuilder,
               activatedRoute: ActivatedRoute,
               private location: Location,
               private toastrService: ToastrService) {
+    this.dealForm = formBuilder.group({
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required]
+    });
     this.studentCardForm = formBuilder.group({
       endDate: ['']
     });
@@ -88,6 +93,7 @@ export class EmployeesDetailsComponent implements OnInit {
       personalAddress: this.personalAddressForm,
       taxOfficeAddress: this.taxOfficeAddressForm,
       yearOfBirthday: ['', Validators.required],
+      deal: this.dealForm,
       permissions: this.permissionsGroup
 
     });

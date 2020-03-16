@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UsefulPermission} from '../../models/employee';
 import {EmployeesService} from '../../services/employees.service';
@@ -30,12 +30,17 @@ export class EmployeesAddComponent implements OnInit {
   OHSTestsForm: FormGroup;
   sanelForm: FormGroup;
   studentCardForm: FormGroup;
+  dealForm: FormGroup;
 
   constructor(private employeesService: EmployeesService,
               formBuilder: FormBuilder,
               activatedRoute: ActivatedRoute,
               private location: Location,
               private toastrService: ToastrService) {
+    this.dealForm = formBuilder.group({
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required]
+    });
     this.studentCardForm = formBuilder.group({
       endDate: ['']
     });
@@ -87,6 +92,7 @@ export class EmployeesAddComponent implements OnInit {
       personalAddress: this.personalAddressForm,
       taxOfficeAddress: this.taxOfficeAddressForm,
       yearOfBirthday: ['', Validators.required],
+      deal: this.dealForm,
       permissions: this.permissionsGroup
 
     });

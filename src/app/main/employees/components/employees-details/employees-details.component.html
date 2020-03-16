@@ -66,6 +66,14 @@
       </form>
 
       <mat-card class="mat-elevation-z0">
+        <mat-card-title>Umowa</mat-card-title>
+        <form [formGroup]="dealForm">
+          <date-picker formControlName="startDate" appearance="outline" [isRequired]="true" placeholder="Data rozpoczęcia"></date-picker>
+          <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
+        </form>
+      </mat-card>
+
+      <mat-card class="mat-elevation-z0">
         <mat-card-title>Uprawnienia</mat-card-title>
         <form [formGroup]="permissionsGroup">
 
