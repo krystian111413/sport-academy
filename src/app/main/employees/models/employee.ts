@@ -21,6 +21,10 @@ export interface Employee {
   personalAddress: Address;
   taxOfficeAddress: Address;
   yearOfBirthday: number;
+  deal: {
+    startDate: string;
+    endDate: string;
+  }
   permissions: {
     lifeguard: {
       refreshedDate: string;
