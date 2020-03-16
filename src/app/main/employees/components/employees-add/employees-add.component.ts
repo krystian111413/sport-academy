@@ -31,6 +31,8 @@ export class EmployeesAddComponent implements OnInit {
   sanelForm: FormGroup;
   studentCardForm: FormGroup;
   dealForm: FormGroup;
+  selectedFile = null;
+  id: string;
 
   constructor(private employeesService: EmployeesService,
               formBuilder: FormBuilder,
@@ -102,13 +104,25 @@ export class EmployeesAddComponent implements OnInit {
   }
 
   onSave(): void {
-    this.employeesService.add(this.formGroup.value).subscribe(success => {
-      if (success) {
+    this.employeesService.addEmployee(this.formGroup.value).subscribe(id => {
         this.toastrService.success('Pracownik dodany');
+        this.id = id;
+        this.fileUpload();
         this.location.back();
-      } else {
-        this.toastrService.error('Bład podczas dodawnia pracownika');
-      }
+    }, error => {
+      this.toastrService.error('Bład podczas dodawnia pracownika');
+    });
+  }
+
+  onFileSelected($event: Event): void {
+    // @ts-ignore
+    this.selectedFile = $event.target.files[0];
+  }
+
+  fileUpload(): void {
+    this.employeesService.uploadFileForEmployee(this.selectedFile, this.id).subscribe(value => {
+      console.log('successful upload');
+      console.log(value);
     });
   }
 }

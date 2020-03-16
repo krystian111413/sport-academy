@@ -2,7 +2,7 @@ export const environment = {
   applicationName: 'Katana',
   production: false,
   hmr: true,
-  apiUrl: 'http://localhost:8089/api/v1',
+  apiUrl: 'http://localhost:8080/api/v1',
   debounceTime: 1000,
   httpRequestTimeout: 5000,
   pageSizeOptions: [25, 50, 100],

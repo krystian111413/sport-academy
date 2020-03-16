@@ -79,6 +79,8 @@
 
           <form [formGroup]="lifeguardForm">
             <mat-card-subtitle>Ratownik Wodny</mat-card-subtitle>
+            <input type="file" (change)="onFileSelected($event)">
+            <button mat-flat-button (click)="fileUpload()">Upload</button>
             <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
             <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
           </form>
