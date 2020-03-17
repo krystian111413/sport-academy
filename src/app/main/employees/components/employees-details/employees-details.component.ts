@@ -109,7 +109,9 @@ export class EmployeesDetailsComponent implements OnInit {
     this.employeesService.update(this.id, this.formGroup.value).subscribe(success => {
       if (success) {
         this.toastrService.success('Employee saved');
-        this.fileUpload();
+        if (this.selectedFile) {
+          this.fileUpload();
+        }
         this.location.back();
       } else {
         this.toastrService.error('Error occurs while saving employee');
@@ -127,6 +129,7 @@ export class EmployeesDetailsComponent implements OnInit {
     onFileSelected($event: Event): void {
     // @ts-ignore
     this.selectedFile = $event.target.files[0];
+    this.formGroup.markAsDirty();
   }
 
   fileUpload(): void {
