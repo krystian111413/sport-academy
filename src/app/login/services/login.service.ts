@@ -30,6 +30,7 @@ export class LoginService {
   }
 
   login(loginForm: LoginForm): Observable<void> {
+    sessionStorage.setItem(this.SESSION_KEY, JSON.stringify(loginForm));
     return this.httpClient.post<void>('api/v1/auth', loginForm);
   }
 
@@ -39,7 +40,6 @@ export class LoginService {
   }
 
   onloginSuccessful(loginForm: LoginForm): void {
-    sessionStorage.setItem(this.SESSION_KEY, JSON.stringify(loginForm));
     this.router.navigateByUrl('/');
   }
 }

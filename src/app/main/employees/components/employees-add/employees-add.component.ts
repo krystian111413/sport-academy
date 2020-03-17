@@ -102,10 +102,14 @@ export class EmployeesAddComponent implements OnInit {
 
   onSave(): void {
     this.employeesService.addEmployee(this.formGroup.value).subscribe(employee => {
-        this.toastrService.success('Pracownik dodany');
         this.id = employee.id;
-        this.fileUpload();
-        this.location.back();
+        if (this.selectedFile) {
+          this.fileUpload();
+        }else  {
+          this.toastrService.success('Pracownik dodany');
+          this.location.back();
+        }
+
     }, error => {
       this.toastrService.error('Bład podczas dodawnia pracownika');
     });
@@ -118,8 +122,8 @@ export class EmployeesAddComponent implements OnInit {
 
   fileUpload(): void {
     this.employeesService.uploadFileForEmployee(this.selectedFile, this.id).subscribe(value => {
-      console.log('successful upload');
-      console.log(value);
+      this.toastrService.success('Pracownik dodany');
+      this.location.back();
     });
   }
 }
