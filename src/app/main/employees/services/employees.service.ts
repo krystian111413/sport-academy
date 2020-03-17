@@ -18,13 +18,13 @@ export class EmployeesService extends CrudService<Employee, any> {
   }
 
   addEmployee(instanceCreateDto: any): Observable<Employee> {
-    return  this.httpClient.post<Employee>(`${environment.apiUrl}${this.path}`, instanceCreateDto);
+    return  this.restService.post<Employee>(`${this.path}`, instanceCreateDto);
   }
 
   uploadFileForEmployee(selectedFile: any, id: string): Observable<any> {
     const  fd = new FormData();
     fd.append('file', selectedFile, selectedFile.name);
-    return this.httpClient.post(`${environment.apiUrl}${this.path}/${id}/file`, fd)
+    return this.restService.post(`${this.path}/${id}/file`, fd)
   }
 
   downloadFile(id: string): Observable<string> {
