@@ -47,20 +47,8 @@
         <mat-card class="mat-elevation-z0">
           <mat-card-title>Adres urzędu skarbowego</mat-card-title>
           <mat-form-field appearance="outline">
-            <mat-label>Ulica</mat-label>
-            <input matInput placeholder="Ulica" formControlName="street">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Numer budynku</mat-label>
-            <input matInput placeholder="Numer budynku" formControlName="buildingNumber">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Miasto</mat-label>
-            <input matInput placeholder="City" formControlName="city">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Kod pocztowy</mat-label>
-            <input matInput placeholder="Kod pocztowy" formControlName="code">
+            <mat-label>Adres</mat-label>
+            <input matInput placeholder="Ulica" formControlName="address">
           </mat-form-field>
         </mat-card>
       </form>
@@ -80,7 +68,6 @@
           <form [formGroup]="lifeguardForm">
             <mat-card-subtitle>Ratownik Wodny</mat-card-subtitle>
             <input type="file" (change)="onFileSelected($event)">
-            <button mat-flat-button (click)="fileUpload()">Upload</button>
             <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
             <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
           </form>
@@ -129,8 +116,8 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!formGroup.valid || !formGroup.dirty">
-        <mat-icon>save</mat-icon>
-        Save
+        <mat-icon>add</mat-icon>
+        add
       </button>
     </mat-card-actions>
   </mat-card>

@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
 import {UsefulPermission} from '../../models/employee';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'employees-details',
@@ -32,6 +33,7 @@ export class EmployeesDetailsComponent implements OnInit {
   sanelForm: FormGroup;
   studentCardForm: FormGroup;
   dealForm: FormGroup;
+  selectedFile = null;
 
   constructor(private employeesService: EmployeesService,
               formBuilder: FormBuilder,
@@ -57,6 +59,7 @@ export class EmployeesDetailsComponent implements OnInit {
       endDate: ['', Validators.required]
     });
     this.lifeguardForm = formBuilder.group({
+      filePath: [''],
       refreshedDate: ['', Validators.required],
       endDate: ['', Validators.required]
     });
@@ -71,10 +74,7 @@ export class EmployeesDetailsComponent implements OnInit {
       code: ['', Validators.required],
     });
     this.taxOfficeAddressForm = formBuilder.group({
-      street: ['', Validators.required],
-      city: ['', Validators.required],
-      buildingNumber: ['', Validators.required],
-      code: ['', Validators.required],
+      address: ['', Validators.required]
     });
     this.permissionsGroup = formBuilder.group({
       lifeguard: this.lifeguardForm,
@@ -82,11 +82,12 @@ export class EmployeesDetailsComponent implements OnInit {
       usefulPermissions: [[]],
       anotherPermission: [''],
       medicalExamination: this.medicalExaminationForm,
-      OHSTests: this.OHSTestsForm,
+      ohstests: this.OHSTestsForm,
       sanel: this.sanelForm,
       studentCard: this.studentCardForm,
     });
     this.formGroup = formBuilder.group({
+      id: [''],
       firstName: ['', Validators.required],
       surName: ['', Validators.required],
       pesel: ['', Validators.required],
@@ -105,10 +106,10 @@ export class EmployeesDetailsComponent implements OnInit {
   }
 
   onSave(): void {
-    console.log(this.formGroup.value);
     this.employeesService.update(this.id, this.formGroup.value).subscribe(success => {
       if (success) {
         this.toastrService.success('Employee saved');
+        this.fileUpload();
         this.location.back();
       } else {
         this.toastrService.error('Error occurs while saving employee');
@@ -119,6 +120,24 @@ export class EmployeesDetailsComponent implements OnInit {
   private downloadEmployeeAndApplyToForm(): void {
     this.employeesService.getInstance(this.id).subscribe(value => {
       this.formGroup.setValue(value);
+      // this.firstAidForm.setValue(value.permissions.firstAid);
     })
   }
+
+    onFileSelected($event: Event): void {
+    // @ts-ignore
+    this.selectedFile = $event.target.files[0];
+  }
+
+  fileUpload(): void {
+    this.employeesService.uploadFileForEmployee(this.selectedFile, this.id).subscribe(value => {
+      console.log('successful upload');
+      console.log(value);
+    });
+  }
+
+  downloadFile() {
+    this.employeesService.downloadFile(this.id);
+  }
+
 }

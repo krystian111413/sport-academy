@@ -14,12 +14,12 @@ export enum UsefulPermission {
 }
 
 export interface Employee {
-  id: number;
+  id: string;
   firstName: string;
   surName: string;
   pesel: string;
   personalAddress: Address;
-  taxOfficeAddress: Address;
+  taxOfficeAddress: string;
   yearOfBirthday: number;
   deal: {
     startDate: string;
@@ -40,7 +40,7 @@ export interface Employee {
       refreshedDate: string;
       endDate: string;
     },
-    OHSTests: {
+    ohstests: {
       refreshedDate: string;
       endDate: string;
     },

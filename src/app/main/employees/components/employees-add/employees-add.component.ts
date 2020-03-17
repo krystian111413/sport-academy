@@ -39,6 +39,9 @@ export class EmployeesAddComponent implements OnInit {
               activatedRoute: ActivatedRoute,
               private location: Location,
               private toastrService: ToastrService) {
+    this.taxOfficeAddressForm = formBuilder.group({
+      address: ['', Validators.required]
+    });
     this.dealForm = formBuilder.group({
       startDate: ['', Validators.required],
       endDate: ['', Validators.required]
@@ -71,19 +74,13 @@ export class EmployeesAddComponent implements OnInit {
       buildingNumber: ['', Validators.required],
       code: ['', Validators.required],
     });
-    this.taxOfficeAddressForm = formBuilder.group({
-      street: ['', Validators.required],
-      city: ['', Validators.required],
-      buildingNumber: ['', Validators.required],
-      code: ['', Validators.required],
-    });
     this.permissionsGroup = formBuilder.group({
       lifeguard: this.lifeguardForm,
       firstAid: this.firstAidForm,
       usefulPermissions: [[]],
       anotherPermission: [''],
       medicalExamination: this.medicalExaminationForm,
-      OHSTests: this.OHSTestsForm,
+      ohstests: this.OHSTestsForm,
       sanel: this.sanelForm,
       studentCard: this.studentCardForm,
     });
@@ -104,9 +101,9 @@ export class EmployeesAddComponent implements OnInit {
   }
 
   onSave(): void {
-    this.employeesService.addEmployee(this.formGroup.value).subscribe(id => {
+    this.employeesService.addEmployee(this.formGroup.value).subscribe(employee => {
         this.toastrService.success('Pracownik dodany');
-        this.id = id;
+        this.id = employee.id;
         this.fileUpload();
         this.location.back();
     }, error => {

@@ -15,9 +15,9 @@ export class EmployeesListComponent implements OnInit {
   columns: ColDef[] = [];
   private employeesListColumnsConfig: ColDef[] = [
     {
-      field: 'name',
-      headerName: 'Name',
-      headerTooltip: 'Name',
+      field: 'firstName',
+      headerName: 'Imie',
+      headerTooltip: 'Imie',
       sortable: true,
       filter: true,
       resizable: true,
@@ -29,30 +29,9 @@ export class EmployeesListComponent implements OnInit {
       }
 
     },{
-      field: 'surname',
-      headerName: 'Surname',
-      headerTooltip: 'Surname',
-      sortable: true,
-      filter: true,
-      resizable: true
-    },{
-      field: 'city',
-      headerName: 'City',
-      headerTooltip: 'City',
-      sortable: true,
-      filter: true,
-      resizable: true
-    },{
-      field: 'age',
-      headerName: 'Age',
-      headerTooltip: 'Age',
-      sortable: true,
-      filter: true,
-      resizable: true
-    },{
-      field: 'pesel',
-      headerName: 'Pesel',
-      headerTooltip: 'Pesel',
+      field: 'surName',
+      headerName: 'Nazwisko',
+      headerTooltip: 'Nazwisko',
       sortable: true,
       filter: true,
       resizable: true

@@ -47,20 +47,8 @@
         <mat-card class="mat-elevation-z0">
           <mat-card-title>Adres urzędu skarbowego</mat-card-title>
           <mat-form-field appearance="outline">
-            <mat-label>Ulica</mat-label>
-            <input matInput placeholder="Ulica" formControlName="street">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Numer budynku</mat-label>
-            <input matInput placeholder="Numer budynku" formControlName="buildingNumber">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Miasto</mat-label>
-            <input matInput placeholder="City" formControlName="city">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Kod pocztowy</mat-label>
-            <input matInput placeholder="Kod pocztowy" formControlName="code">
+            <mat-label>Adres</mat-label>
+            <input matInput placeholder="Ulica" formControlName="address">
           </mat-form-field>
         </mat-card>
       </form>
@@ -77,19 +65,21 @@
         <mat-card-title>Uprawnienia</mat-card-title>
         <form [formGroup]="permissionsGroup">
 
-        <form [formGroup]="lifeguardForm">
-          <mat-card-subtitle>Ratownik Wodny</mat-card-subtitle>
-          <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
-          <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
-        </form>
+          <form [formGroup]="lifeguardForm">
+            <mat-card-subtitle>Ratownik Wodny</mat-card-subtitle>
+            <input type="file" (change)="onFileSelected($event)">
+            <button mat-raised-button (click)="downloadFile()">download</button>
+            <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
+            <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
+          </form>
 
-        <form [formGroup]="firstAidForm">
-          <mat-card-subtitle>Kurs Kwalifikowanej Pierwszej Pomocy</mat-card-subtitle>
-          <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
-          <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
-        </form>
+          <form [formGroup]="firstAidForm">
+            <mat-card-subtitle>Kurs Kwalifikowanej Pierwszej Pomocy</mat-card-subtitle>
+            <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
+            <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
+          </form>
 
-        <mat-card-subtitle>Uprawnienia przydatne w ratownictwie</mat-card-subtitle>
+          <mat-card-subtitle>Uprawnienia przydatne w ratownictwie</mat-card-subtitle>
           <mat-form-field>
             <mat-label>Uprawnienia</mat-label>
             <mat-select formControlName="usefulPermissions" multiple>

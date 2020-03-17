@@ -2,7 +2,7 @@ export const environment = {
   applicationName: 'Katana',
   production: true,
   hmr: false,
-  apiUrl: 'http://localhost:8089/api/v1',
+  apiUrl: 'https://sport-academy-backend.herokuapp.com/',
   debounceTime: 1000,
   httpRequestTimeout: 5000,
   pageSizeOptions: [25, 50, 100],

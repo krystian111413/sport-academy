@@ -14,20 +14,26 @@ export class EmployeesService extends CrudService<Employee, any> {
 
   constructor(restService: RestService,
               private httpClient: HttpClient) {
-    super(restService, 'employees');
+    super(restService, 'api/v1/employees');
   }
+  //
+  // getAll(): Observable<Employee[]> {
+  //   return this.httpClient.get<Employee[]>('assets/employees.json');
+  // }
 
-  getAll(): Observable<Employee[]> {
-    return this.httpClient.get<Employee[]>('assets/employees.json');
-  }
-
-  addEmployee(instanceCreateDto: any): Observable<string> {
-    return this.restService.post<string>(this.path, instanceCreateDto);
+  addEmployee(instanceCreateDto: any): Observable<Employee> {
+    return  this.httpClient.post<Employee>(`${environment.apiUrl}/employees`, instanceCreateDto);
   }
 
   uploadFileForEmployee(selectedFile: any, id: string): Observable<any> {
     const  fd = new FormData();
     fd.append('file', selectedFile, selectedFile.name);
-    return this.httpClient.post(`${environment.apiUrl}/${id}/employees/file`, fd)
+    return this.httpClient.post(`${environment.apiUrl}/employees/${id}/file`, fd)
   }
+
+  downloadFile(id: string) {
+    window.open(`${environment.apiUrl}/api/v1/employees/${id}/file`);
+  }
+
+
 }
