@@ -5,7 +5,6 @@ import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
 import {UsefulPermission} from '../../models/employee';
-import {environment} from '../../../../../environments/environment';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ImageDialogComponent} from '../image-dialog/image-dialog.component';
 import {MatDialog} from '@angular/material';
@@ -65,7 +64,6 @@ export class EmployeesDetailsComponent implements OnInit {
       endDate: ['', Validators.required]
     });
     this.lifeguardForm = formBuilder.group({
-      image: [''],
       refreshedDate: ['', Validators.required],
       endDate: ['', Validators.required]
     });
@@ -128,13 +126,38 @@ export class EmployeesDetailsComponent implements OnInit {
 
   private downloadEmployeeAndApplyToForm(): void {
     this.employeesService.getInstance(this.id).subscribe(value => {
-      this.formGroup.setValue(value);
+      this.formGroup.setValue(
+        {
+          id: value.id,
+          firstName: value.firstName,
+          surName: value.surName,
+          pesel: value.pesel,
+          personalAddress: value.personalAddress,
+          taxOfficeAddress: value.taxOfficeAddress,
+          yearOfBirthday: value.yearOfBirthday,
+          deal: value.deal,
+          permissions: {
+            lifeguard: {
+              refreshedDate: value.permissions.lifeguard.refreshedDate,
+              endDate: value.permissions.lifeguard.endDate,
+            },
+            firstAid: value.permissions.firstAid,
+            usefulPermissions: value.permissions.usefulPermissions,
+            anotherPermission: value.permissions.anotherPermission,
+            medicalExamination: value.permissions.medicalExamination,
+            ohstests: value.permissions.ohstests,
+            sanel: value.permissions.sanel,
+            studentCard: value.permissions.studentCard
+          }
+
+        }
+      );
       // this.base64Image = this.domSanitizer.bypassSecurityTrustUrl(value.permissions.lifeguard.image.data);
       this.base64Image = value.permissions.lifeguard.image.data;
-    })
+    });
   }
 
-    onFileSelected($event: Event): void {
+  onFileSelected($event: Event): void {
     // @ts-ignore
     this.selectedFile = $event.target.files[0];
     this.formGroup.markAsDirty();
