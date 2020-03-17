@@ -28,12 +28,9 @@ export class LoginService {
   }
 
   login(loginForm: LoginForm) {
-    this.router.navigateByUrl('/');
     sessionStorage.setItem(this.SESSION_KEY, JSON.stringify(loginForm));
-    this.restService.setRequestInterceptor((request: AxiosRequestConfig) => {
-        request.headers['Authorization'] = btoa(`${loginForm.login}&${loginForm.password}`);
-      return request;
-    });
+    this.router.navigateByUrl('/');
+
   }
 
   logout(): void {

@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import * as JSONbig from 'json-bigint';
 import {CookieService} from "ngx-cookie-service";
 import {SelectedProjectConfigurer} from "./selected-project-configurer";
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class RestService extends SelectedProjectConfigurer {
 
   private httpClient: AxiosInstance;
 
-  constructor(cookieService: CookieService) {
+  constructor(cookieService: CookieService,
+              private router: Router) {
     super(cookieService);
     this.createHttpClient();
   }

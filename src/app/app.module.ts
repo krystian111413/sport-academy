@@ -16,8 +16,9 @@ import {CoreModule} from "./core/core.module";
 import {AgGridModule} from "ag-grid-angular";
 import {ToastrModule} from "ngx-toastr";
 import {NavigationModule} from "./navigation/navigation.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatNativeDateModule} from '@angular/material';
+import {AuthInterceptor} from './core/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,13 @@ import {MatNativeDateModule} from '@angular/material';
       preventDuplicates: true
     }),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ]
 })
 export class AppModule { }

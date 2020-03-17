@@ -4,19 +4,16 @@ import {ListResponse} from '../../models/list-response.model';
 import {Observable, Observer} from 'rxjs';
 import {AdditionalCriteria} from '../../../shared/list/additional-criteria.model';
 import {CriteriaBuilder} from '../../../shared/rest/criteria-builder';
+import {HttpClient} from '@angular/common/http';
 
-export abstract class CrudService<INSTANCE_DTO, INSTANCE_CREATE_DTO> implements ListService<INSTANCE_DTO> {
+export abstract class CrudService<INSTANCE_DTO, INSTANCE_CREATE_DTO> {
 
-    constructor(protected restService: RestService,
+    constructor(protected restService: HttpClient,
                 protected path: string) {
     }
 
     getAll(): Observable<INSTANCE_DTO[]> {
         return this.restService.get<INSTANCE_DTO[]>(this.path);
-    }
-
-    getList(criteriaBuilder?: CriteriaBuilder, additionalCriteria?: AdditionalCriteria): Observable<ListResponse<INSTANCE_DTO>> {
-        return this.restService.get<ListResponse<INSTANCE_DTO>>(this.path, {params: criteriaBuilder ? criteriaBuilder.toJSON() : undefined});
     }
 
     getInstance(id: number | string): Observable<INSTANCE_DTO> {
