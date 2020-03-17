@@ -6,6 +6,9 @@ import {Location} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
 import {UsefulPermission} from '../../models/employee';
 import {environment} from '../../../../../environments/environment';
+import {DomSanitizer} from '@angular/platform-browser';
+import {ImageDialogComponent} from '../image-dialog/image-dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'employees-details',
@@ -34,11 +37,14 @@ export class EmployeesDetailsComponent implements OnInit {
   studentCardForm: FormGroup;
   dealForm: FormGroup;
   selectedFile = null;
+  private base64Image: any;
 
   constructor(private employeesService: EmployeesService,
+              public dialog: MatDialog,
               formBuilder: FormBuilder,
               activatedRoute: ActivatedRoute,
               private location: Location,
+              private domSanitizer: DomSanitizer,
               private toastrService: ToastrService) {
     this.dealForm = formBuilder.group({
       startDate: ['', Validators.required],
@@ -59,7 +65,7 @@ export class EmployeesDetailsComponent implements OnInit {
       endDate: ['', Validators.required]
     });
     this.lifeguardForm = formBuilder.group({
-      filePath: [''],
+      image: [''],
       refreshedDate: ['', Validators.required],
       endDate: ['', Validators.required]
     });
@@ -123,7 +129,8 @@ export class EmployeesDetailsComponent implements OnInit {
   private downloadEmployeeAndApplyToForm(): void {
     this.employeesService.getInstance(this.id).subscribe(value => {
       this.formGroup.setValue(value);
-      // this.firstAidForm.setValue(value.permissions.firstAid);
+      // this.base64Image = this.domSanitizer.bypassSecurityTrustUrl(value.permissions.lifeguard.image.data);
+      this.base64Image = value.permissions.lifeguard.image.data;
     })
   }
 
@@ -143,8 +150,10 @@ export class EmployeesDetailsComponent implements OnInit {
     });
   }
 
-  downloadFile() {
-    this.employeesService.downloadFile(this.id);
+  showLifeguardImage() {
+    const dialogRef = this.dialog.open(ImageDialogComponent, {
+      // width: '250px',
+      data: {base64Image: this.base64Image}
+    });
   }
-
 }

@@ -27,8 +27,9 @@ export class EmployeesService extends CrudService<Employee, any> {
     return this.httpClient.post(`${environment.apiUrl}${this.path}/${id}/file`, fd)
   }
 
-  downloadFile(id: string) {
-    window.open(`${environment.apiUrl}${this.path}/${id}/file`);
+  downloadFile(id: string): Observable<string> {
+    return this.restService.get<string>(`${this.path}/${id}/file`);
+    // window.open(`${environment.apiUrl}${this.path}/${id}/file`);
   }
 
 

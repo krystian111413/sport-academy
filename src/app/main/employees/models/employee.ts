@@ -29,6 +29,10 @@ export interface Employee {
     lifeguard: {
       refreshedDate: string;
       endDate: string;
+      image: {
+        type: string;
+        data: string;
+      }
     },
     firstAid: {
       refreshedDate: string;

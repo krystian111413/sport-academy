@@ -14,10 +14,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {DatePickerModule} from '../../shared/date-picker/date-picker.module';
 import {MatSelectModule} from '@angular/material';
 import {EmployeesAddComponent} from './components/employees-add/employees-add.component';
+import { ImageDialogComponent } from './components/image-dialog/image-dialog.component';
 
 
 @NgModule({
-  declarations: [EmployeesListComponent, EmployeesGeneralComponent, EmployeesDetailsComponent, EmployeesAddComponent],
+  declarations: [EmployeesListComponent, EmployeesGeneralComponent, EmployeesDetailsComponent, EmployeesAddComponent, ImageDialogComponent],
   imports: [
     CommonModule,
     EmployeesRoutingModule,
@@ -29,6 +30,7 @@ import {EmployeesAddComponent} from './components/employees-add/employees-add.co
     MatButtonModule,
     DatePickerModule,
     MatSelectModule
-  ]
+  ],
+  entryComponents: [ImageDialogComponent]
 })
 export class EmployeesModule { }
