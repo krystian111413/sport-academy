@@ -108,11 +108,12 @@ export class EmployeesDetailsComponent implements OnInit {
   onSave(): void {
     this.employeesService.update(this.id, this.formGroup.value).subscribe(success => {
       if (success) {
-        this.toastrService.success('Employee saved');
         if (this.selectedFile) {
           this.fileUpload();
+        } else {
+          this.toastrService.success('Employee saved');
+          this.location.back();
         }
-        this.location.back();
       } else {
         this.toastrService.error('Error occurs while saving employee');
       }
@@ -134,8 +135,11 @@ export class EmployeesDetailsComponent implements OnInit {
 
   fileUpload(): void {
     this.employeesService.uploadFileForEmployee(this.selectedFile, this.id).subscribe(value => {
-      console.log('successful upload');
-      console.log(value);
+      this.toastrService.success('Employee saved');
+      this.location.back();
+    }, error => {
+      console.log(error);
+      this.toastrService.warning('Can not upload this file');
     });
   }
 
