@@ -45,6 +45,7 @@ export class EmployeesDetailsComponent implements OnInit {
       helmsman: [false],
     });
     this.dealForm = formBuilder.group({
+      dealType: ['', Validators.required],
       place: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required]
@@ -135,7 +136,8 @@ export class EmployeesDetailsComponent implements OnInit {
           deal: {
             place: value.deal.place,
             startDate: value.deal.startDate,
-            endDate: value.deal.endDate
+            endDate: value.deal.endDate,
+            dealType: value.deal.dealType
           },
           permissions: {
             lifeguard: {

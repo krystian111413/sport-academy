@@ -68,7 +68,14 @@
           Pokaż zdjęcie
         </button>
         <form [formGroup]="dealForm">
-          <mat-form-field appearance="outline" class="full-width">
+          <mat-form-field appearance="outline">
+            <mat-label>Rodzaj umowy</mat-label>
+            <mat-select formControlName="dealType">
+              <mat-option value="Umowa o prace"> Umowa o prace </mat-option>
+              <mat-option value="Umowa na zlecenie"> Umowa na zlecenie </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
             <mat-label>Miejsce pracy</mat-label>
             <input matInput placeholder="Adres" formControlName="place">
           </mat-form-field>

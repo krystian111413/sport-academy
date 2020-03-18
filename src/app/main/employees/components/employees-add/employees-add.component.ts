@@ -43,6 +43,7 @@ export class EmployeesAddComponent implements OnInit {
     });
     this.dealForm = formBuilder.group({
       place: ['', Validators.required],
+      dealType: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required]
     });

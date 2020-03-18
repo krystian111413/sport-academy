@@ -16,6 +16,7 @@ export interface Employee {
   taxOfficeAddress: string;
   yearOfBirthday: number;
   deal: {
+    dealType: string;
     image: any;
     place: string;
     startDate: string;
