@@ -307,4 +307,31 @@ export class EmployeesDetailsComponent implements OnInit {
     };
     reader.readAsBinaryString(file);
   }
+
+  isPhoto(fileName: string): boolean {
+    switch (fileName) {
+      case 'deal':
+        return !!this.employee.deal.image;
+      case 'lifeguard':
+        return !!this.employee.permissions.lifeguard.image;
+      case 'firstAid':
+        return !!this.employee.permissions.firstAid.image;
+      case 'frogman':
+        return !!this.employee.permissions.usefulPermissions.frogmanImage;
+      case 'swimmingInstructor':
+        return !!this.employee.permissions.usefulPermissions.swimmingInstructorImage;
+      case 'yachtSailor':
+        return !!this.employee.permissions.usefulPermissions.yachtSailorImage;
+      case 'anotherPermission':
+        return !!this.employee.permissions.anotherPermissionImage;
+      case 'medicalExamination':
+        return !!this.employee.permissions.medicalExamination.image;
+      case 'ohstests':
+        return !!this.employee.permissions.ohstests.image;
+      case 'sanel':
+        return !!this.employee.permissions.sanel.image;
+      case 'studentCard':
+        return !!this.employee.permissions.studentCard.image;
+    }
+  }
 }
