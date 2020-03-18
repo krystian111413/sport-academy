@@ -50,7 +50,11 @@ export class DatePickerComponent implements ControlValueAccessor {
 
     public onChangeListener(event: MatDatepickerInputEvent<any>): void {
         const date = new Date(event.value);
-        this.onChange(date.toJSON());
+        if (event.value) {
+          this.onChange(date.toJSON());
+        }else {
+          this.onChange(null);
+        }
         // this.onChange(new Date(event.value).toLocaleDateString());
     }
 

@@ -41,12 +41,20 @@
             <mat-label>Kod pocztowy</mat-label>
             <input matInput placeholder="Kod pocztowy" formControlName="code">
           </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="email" formControlName="email">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Telefon</mat-label>
+            <input matInput type="tel" placeholder="telefon" formControlName="phone">
+          </mat-form-field>
         </mat-card>
       </form>
       <form [formGroup]="taxOfficeAddressForm">
         <mat-card class="mat-elevation-z0">
           <mat-card-title>Adres urzędu skarbowego</mat-card-title>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class="full-width">
             <mat-label>Adres</mat-label>
             <input matInput placeholder="Adres" formControlName="address">
           </mat-form-field>
@@ -56,6 +64,10 @@
       <mat-card class="mat-elevation-z0">
         <mat-card-title>Umowa</mat-card-title>
         <form [formGroup]="dealForm">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Miejsce pracy</mat-label>
+            <input matInput placeholder="Adres" formControlName="place">
+          </mat-form-field>
           <date-picker formControlName="startDate" appearance="outline" [isRequired]="true" placeholder="Data rozpoczęcia"></date-picker>
           <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
         </form>
@@ -67,9 +79,7 @@
 
           <form [formGroup]="lifeguardForm">
             <mat-card-subtitle>Ratownik Wodny</mat-card-subtitle>
-            <input type="file" (change)="onFileSelected($event)">
-            <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
-            <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
+            <date-picker formControlName="releaseDate" appearance="outline" [isRequired]="true" placeholder="Data wydania"></date-picker>
           </form>
 
           <form [formGroup]="firstAidForm">
@@ -78,13 +88,22 @@
             <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
           </form>
 
-          <mat-card-subtitle>Uprawnienia przydatne w ratownictwie</mat-card-subtitle>
-          <mat-form-field>
+          <form [formGroup]="usefulPermissionsGroup">
+            <mat-card-subtitle>Uprawnienia przydatne w ratownictwie</mat-card-subtitle>
             <mat-label>Uprawnienia</mat-label>
-            <mat-select formControlName="usefulPermissions" multiple>
-              <mat-option *ngFor="let usefulPermission of usefulPermissions" [value]="usefulPermission">{{usefulPermission}}</mat-option>
-            </mat-select>
-          </mat-form-field>
+            <div>
+              <mat-checkbox formControlName="frogman">Płetwonurek</mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox formControlName="yachtSailor">Żeglarz Jachtowy</mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox formControlName="helmsman">Sternik Motorowodny</mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox formControlName="swimmingInstructor">Instruktor Pływania</mat-checkbox>
+            </div>
+          </form>
           <mat-form-field appearance="outline">
             <mat-label>Inne uprawnienia</mat-label>
             <input matInput placeholder="Inne..." formControlName="anotherPermission">
@@ -117,7 +136,7 @@
     <mat-card-actions>
       <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!formGroup.valid || !formGroup.dirty">
         <mat-icon>add</mat-icon>
-        add
+        Dodaj
       </button>
     </mat-card-actions>
   </mat-card>

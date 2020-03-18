@@ -3,6 +3,8 @@ import {ColDef} from "ag-grid-community";
 import {EmployeesService} from "../../../services/employees.service";
 import {Employee} from "../../../models/employee";
 import {Router} from "@angular/router";
+import {AgFilterTypes} from '../../../../../shared/ag-list/ag-list/ag-list.component';
+import {GridDateComperator} from '../../../../../shared/date-utils/grid-date-comperator';
 
 @Component({
   selector: 'employees-list',
@@ -25,7 +27,7 @@ export class EmployeesListComponent implements OnInit {
         this.router.navigateByUrl(`/main/employees/${event.data.id}`);
       },
       cellRenderer: params => {
-        return `<a style="color: dodgerblue">${params.value}</a>`;
+        return `<a style="color: dodgerblue; cursor: pointer">${params.value}</a>`;
       }
 
     },{
@@ -34,6 +36,25 @@ export class EmployeesListComponent implements OnInit {
       headerTooltip: 'Nazwisko',
       sortable: true,
       filter: true,
+      resizable: true
+    },{
+      field: `city`,
+      headerName: 'Miasto',
+      headerTooltip: 'Miasto',
+      sortable: true,
+      filter: true,
+      resizable: true
+    },{
+      field: `dealEndDate`,
+      headerName: 'Data końca umowy',
+      headerTooltip: 'Data końca umowy',
+      sortable: true,
+      filter: AgFilterTypes.date,
+      filterParams: {
+        comparator(filterLocalDateAtMidnight: string, cellValue: any): number {
+          return GridDateComperator.dateComparator(cellValue, filterLocalDateAtMidnight);
+        }
+      },
       resizable: true
     },
   ];

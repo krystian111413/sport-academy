@@ -3,14 +3,8 @@ export interface Address {
   city: string;
   buildingNumber: string;
   code: string;
-}
-
-export enum UsefulPermission {
-  helmsman = 'Sternik',
-  powerboating = 'Motorowodny',
-  yachtSailor = 'Żeglarz Jachtowy',
-  frogman = 'Płetwonurek',
-  swimmingInstructor = 'Instruktor Pływania',
+  email: string;
+  phone: string;
 }
 
 export interface Employee {
@@ -22,36 +16,52 @@ export interface Employee {
   taxOfficeAddress: string;
   yearOfBirthday: number;
   deal: {
+    image: any;
+    place: string;
     startDate: string;
     endDate: string;
   }
   permissions: {
     lifeguard: {
-      refreshedDate: string;
-      endDate: string;
+      releaseDate: string;
       image: {
         type: string;
         data: string;
       }
     },
     firstAid: {
+      image: any;
       refreshedDate: string;
       endDate: string;
     },
-    usefulPermissions: UsefulPermission[],
+    usefulPermissions: {
+      frogman: boolean;
+      frogmanImage: any;
+      swimmingInstructor: boolean;
+      swimmingInstructorImage: any;
+      yachtSailor: boolean;
+      yachtSailorImage: any;
+      helmsman: boolean;
+      helmsmanImage: any;
+    },
     anotherPermission: string;
+    anotherPermissionImage: any;
     medicalExamination: {
+      image: any;
       refreshedDate: string;
       endDate: string;
     },
     ohstests: {
+      image: any;
       refreshedDate: string;
       endDate: string;
     },
     sanel: {
+      image: any;
       endDate: string;
     },
     studentCard: {
+      image: any;
       endDate: string;
     }
   }

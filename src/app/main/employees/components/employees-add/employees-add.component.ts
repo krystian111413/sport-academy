@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UsefulPermission} from '../../models/employee';
 import {EmployeesService} from '../../services/employees.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
@@ -19,20 +18,13 @@ export class EmployeesAddComponent implements OnInit {
   taxOfficeAddressForm: FormGroup;
   lifeguardForm: FormGroup;
   firstAidForm: FormGroup;
-  usefulPermissions: UsefulPermission[] = [
-    UsefulPermission.frogman,
-    UsefulPermission.helmsman,
-    UsefulPermission.powerboating,
-    UsefulPermission.swimmingInstructor,
-    UsefulPermission.yachtSailor,
-  ];
   medicalExaminationForm: FormGroup;
   OHSTestsForm: FormGroup;
   sanelForm: FormGroup;
   studentCardForm: FormGroup;
   dealForm: FormGroup;
-  selectedFile = null;
   id: string;
+  usefulPermissionsGroup: FormGroup;
 
   constructor(private employeesService: EmployeesService,
               formBuilder: FormBuilder,
@@ -40,10 +32,17 @@ export class EmployeesAddComponent implements OnInit {
               private router: Router,
               private location: Location,
               private toastrService: ToastrService) {
+    this.usefulPermissionsGroup = formBuilder.group({
+      frogman: [false],
+      swimmingInstructor: [false],
+      yachtSailor: [false],
+      helmsman: [false],
+    });
     this.taxOfficeAddressForm = formBuilder.group({
       address: ['', Validators.required]
     });
     this.dealForm = formBuilder.group({
+      place: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required]
     });
@@ -62,8 +61,7 @@ export class EmployeesAddComponent implements OnInit {
       endDate: ['', Validators.required]
     });
     this.lifeguardForm = formBuilder.group({
-      refreshedDate: ['', Validators.required],
-      endDate: ['', Validators.required]
+      releaseDate: ['', Validators.required]
     });
     this.firstAidForm = formBuilder.group({
       refreshedDate: ['', Validators.required],
@@ -74,11 +72,13 @@ export class EmployeesAddComponent implements OnInit {
       city: ['', Validators.required],
       buildingNumber: ['', Validators.required],
       code: ['', Validators.required],
+      email: ['', Validators.required],
+      phone: ['', Validators.required],
     });
     this.permissionsGroup = formBuilder.group({
       lifeguard: this.lifeguardForm,
       firstAid: this.firstAidForm,
-      usefulPermissions: [[]],
+      usefulPermissions: this.usefulPermissionsGroup,
       anotherPermission: [''],
       medicalExamination: this.medicalExaminationForm,
       ohstests: this.OHSTestsForm,
@@ -104,27 +104,13 @@ export class EmployeesAddComponent implements OnInit {
   onSave(): void {
     this.employeesService.addEmployee(this.formGroup.value).subscribe(employee => {
       this.id = employee.id;
-      if (this.selectedFile) {
-        this.fileUpload();
-      }
       this.toastrService.success('Pracownik dodany');
-      this.location.back();
+      // this.location.back();
+      this.router.navigateByUrl(`/main/employees/${this.id}`);
 
     }, error => {
       this.toastrService.error('Bład podczas dodawnia pracownika');
     });
   }
 
-  onFileSelected($event: Event): void {
-    // @ts-ignore
-    this.selectedFile = $event.target.files[0];
-  }
-
-  fileUpload(): void {
-    this.employeesService.uploadFileForEmployee(this.selectedFile, this.id).subscribe(value => {
-    },error => {
-      this.toastrService.warning("Coś poszło nie tak z wysłaniem pliku wyślij go ponownie");
-      this.router.navigateByUrl(`/main/employees/${this.id}`);
-    });
-  }
 }

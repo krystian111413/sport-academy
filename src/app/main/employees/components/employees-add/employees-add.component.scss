@@ -12,3 +12,14 @@ date-picker {
   padding: 8px;
   width: 50%;
 }
+
+.full-width {
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+mat-checkbox {
+  ::ng-deep span {
+    width: 200px;
+  }
+}

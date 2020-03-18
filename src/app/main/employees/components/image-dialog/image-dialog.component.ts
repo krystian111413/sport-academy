@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 export interface ImageDialogData {
-  base64Image: string;
+  base64Image: any;
 }
 @Component({
   selector: 'image-dialog',

@@ -4,10 +4,10 @@ import {EmployeesService} from '../../services/employees.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
-import {UsefulPermission} from '../../models/employee';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ImageDialogComponent} from '../image-dialog/image-dialog.component';
 import {MatDialog} from '@angular/material';
+import {Employee} from '../../models/employee';
 
 @Component({
   selector: 'employees-details',
@@ -23,20 +23,13 @@ export class EmployeesDetailsComponent implements OnInit {
   lifeguardForm: FormGroup;
   id: string;
   firstAidForm: FormGroup;
-  usefulPermissions: UsefulPermission[] = [
-    UsefulPermission.frogman,
-    UsefulPermission.helmsman,
-    UsefulPermission.powerboating,
-    UsefulPermission.swimmingInstructor,
-    UsefulPermission.yachtSailor,
-  ];
   medicalExaminationForm: FormGroup;
   OHSTestsForm: FormGroup;
   sanelForm: FormGroup;
   studentCardForm: FormGroup;
   dealForm: FormGroup;
-  selectedFile = null;
-  private base64Image: any;
+  usefulPermissionsGroup: FormGroup;
+  private employee: Employee;
 
   constructor(private employeesService: EmployeesService,
               public dialog: MatDialog,
@@ -45,7 +38,14 @@ export class EmployeesDetailsComponent implements OnInit {
               private location: Location,
               private domSanitizer: DomSanitizer,
               private toastrService: ToastrService) {
+    this.usefulPermissionsGroup = formBuilder.group({
+      frogman: [false],
+      swimmingInstructor: [false],
+      yachtSailor: [false],
+      helmsman: [false],
+    });
     this.dealForm = formBuilder.group({
+      place: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required]
     });
@@ -64,8 +64,7 @@ export class EmployeesDetailsComponent implements OnInit {
       endDate: ['', Validators.required]
     });
     this.lifeguardForm = formBuilder.group({
-      refreshedDate: ['', Validators.required],
-      endDate: ['', Validators.required]
+      releaseDate: ['', Validators.required],
     });
     this.firstAidForm = formBuilder.group({
       refreshedDate: ['', Validators.required],
@@ -76,6 +75,8 @@ export class EmployeesDetailsComponent implements OnInit {
       city: ['', Validators.required],
       buildingNumber: ['', Validators.required],
       code: ['', Validators.required],
+      email: ['', Validators.required],
+      phone: ['', Validators.required],
     });
     this.taxOfficeAddressForm = formBuilder.group({
       address: ['', Validators.required]
@@ -83,7 +84,7 @@ export class EmployeesDetailsComponent implements OnInit {
     this.permissionsGroup = formBuilder.group({
       lifeguard: this.lifeguardForm,
       firstAid: this.firstAidForm,
-      usefulPermissions: [[]],
+      usefulPermissions: this.usefulPermissionsGroup,
       anotherPermission: [''],
       medicalExamination: this.medicalExaminationForm,
       ohstests: this.OHSTestsForm,
@@ -112,12 +113,8 @@ export class EmployeesDetailsComponent implements OnInit {
   onSave(): void {
     this.employeesService.update(this.id, this.formGroup.value).subscribe(success => {
       if (success) {
-        if (this.selectedFile) {
-          this.fileUpload();
-        } else {
-          this.toastrService.success('Employee saved');
-          this.location.back();
-        }
+        this.toastrService.success('Employee saved');
+        this.location.back();
       } else {
         this.toastrService.error('Error occurs while saving employee');
       }
@@ -135,48 +132,179 @@ export class EmployeesDetailsComponent implements OnInit {
           personalAddress: value.personalAddress,
           taxOfficeAddress: value.taxOfficeAddress,
           yearOfBirthday: value.yearOfBirthday,
-          deal: value.deal,
+          deal: {
+            place: value.deal.place,
+            startDate: value.deal.startDate,
+            endDate: value.deal.endDate
+          },
           permissions: {
             lifeguard: {
-              refreshedDate: value.permissions.lifeguard.refreshedDate,
-              endDate: value.permissions.lifeguard.endDate,
+              releaseDate: value.permissions.lifeguard.releaseDate
             },
-            firstAid: value.permissions.firstAid,
-            usefulPermissions: value.permissions.usefulPermissions,
+            firstAid: {
+              refreshedDate: value.permissions.firstAid.refreshedDate,
+              endDate: value.permissions.firstAid.endDate,
+            },
+            usefulPermissions: {
+              frogman: value.permissions.usefulPermissions.frogman,
+              swimmingInstructor: value.permissions.usefulPermissions.swimmingInstructor,
+              yachtSailor: value.permissions.usefulPermissions.yachtSailor,
+              helmsman: value.permissions.usefulPermissions.helmsman,
+            },
             anotherPermission: value.permissions.anotherPermission,
-            medicalExamination: value.permissions.medicalExamination,
-            ohstests: value.permissions.ohstests,
-            sanel: value.permissions.sanel,
-            studentCard: value.permissions.studentCard
+            medicalExamination: {
+              refreshedDate: value.permissions.medicalExamination.refreshedDate,
+              endDate: value.permissions.medicalExamination.endDate,
+            },
+            ohstests: {
+              refreshedDate: value.permissions.ohstests.refreshedDate,
+              endDate: value.permissions.ohstests.endDate,
+            },
+            sanel: {
+              endDate: value.permissions.sanel.endDate
+            },
+            studentCard: {
+              endDate: value.permissions.studentCard.endDate
+            }
           }
 
         }
       );
-      // this.base64Image = this.domSanitizer.bypassSecurityTrustUrl(value.permissions.lifeguard.image.data);
-      this.base64Image = value.permissions.lifeguard.image.data;
+      this.employee = value;
     });
   }
 
-  onFileSelected($event: Event): void {
-    // @ts-ignore
-    this.selectedFile = $event.target.files[0];
-    this.formGroup.markAsDirty();
+  onFileSelected($event: Event, fileName: string): void {
+    const file = $event.target['files'][0];
+    this.fileUpload(file, fileName);
   }
 
-  fileUpload(): void {
-    this.employeesService.uploadFileForEmployee(this.selectedFile, this.id).subscribe(value => {
-      this.toastrService.success('Employee saved');
-      this.location.back();
+  fileUpload(file: any, fileName: string): void {
+    this.employeesService.uploadFileForEmployee(fileName, file, this.id).subscribe(value => {
+      this.toastrService.success('Zdjęcie zaktualizowane');
+      this.replaceImage(file, fileName);
     }, error => {
       console.log(error);
-      this.toastrService.warning('Can not upload this file');
+      this.toastrService.warning('Problem z wysłanie zdjęcia');
     });
   }
 
-  showLifeguardImage() {
+  showImage(fileName: string) {
+    let data;
+    switch (fileName) {
+      case 'deal':
+        data = this.employee.deal.image;
+        break;
+      case 'lifeguard':
+        data = this.employee.permissions.lifeguard.image;
+        break;
+      case 'firstAid':
+        data = this.employee.permissions.firstAid.image;
+        break;
+      case 'frogman':
+        data = this.employee.permissions.usefulPermissions.frogmanImage;
+        break;
+      case 'swimmingInstructor':
+        data = this.employee.permissions.usefulPermissions.swimmingInstructorImage;
+        break;
+      case 'yachtSailor':
+        data = this.employee.permissions.usefulPermissions.yachtSailorImage;
+        break;
+      case 'anotherPermission':
+        data = this.employee.permissions.anotherPermissionImage;
+        break;
+      case 'medicalExamination':
+        data = this.employee.permissions.medicalExamination.image;
+        break;
+      case 'ohstests':
+        data = this.employee.permissions.ohstests.image;
+        break;
+      case 'sanel':
+        data = this.employee.permissions.sanel.image;
+        break;
+      case 'studentCard':
+        data = this.employee.permissions.studentCard.image;
+        break;
+    }
     const dialogRef = this.dialog.open(ImageDialogComponent, {
       // width: '250px',
-      data: {base64Image: this.base64Image}
+      data: {base64Image: data}
     });
+  }
+
+  private replaceImage(file: any, fileName: string): void {
+    let reader = new FileReader();
+    reader.onload = ev => {
+      switch (fileName) {
+        case 'deal':
+          this.employee.deal.image = {
+            data: btoa(reader.result.toString()),
+            type: ''
+          };
+          break;
+        case 'lifeguard':
+          this.employee.permissions.lifeguard.image = {
+            data: btoa(reader.result.toString()),
+            type: ''
+          };
+          break;
+        case 'firstAid':
+          this.employee.permissions.firstAid.image = {
+            data: btoa(reader.result.toString()),
+            type: ''
+          };
+          break;
+        case 'frogman':
+          this.employee.permissions.usefulPermissions.frogmanImage = {
+            data: btoa(reader.result.toString()),
+            type: ''
+          };
+          break;
+        case 'swimmingInstructor':
+          this.employee.permissions.usefulPermissions.swimmingInstructorImage = {
+            data: btoa(reader.result.toString()),
+            type: ''
+          };
+          break;
+        case 'yachtSailor':
+          this.employee.permissions.usefulPermissions.yachtSailorImage = {
+            data: btoa(reader.result.toString()),
+            type: ''
+          };
+          break;
+        case 'anotherPermission':
+          this.employee.permissions.anotherPermissionImage = {
+            data: btoa(reader.result.toString()),
+            type: ''
+          };
+          break;
+        case 'medicalExamination':
+          this.employee.permissions.medicalExamination.image = {
+            data: btoa(reader.result.toString()),
+            type: ''
+          };
+          break;
+        case 'ohstests':
+          this.employee.permissions.ohstests.image = {
+            data: btoa(reader.result.toString()),
+            type: ''
+          };
+          break;
+        case 'sanel':
+          this.employee.permissions.sanel.image = {
+            data: btoa(reader.result.toString()),
+            type: ''
+          };
+          break;
+        case 'studentCard':
+          this.employee.permissions.studentCard.image = {
+            data: btoa(reader.result.toString()),
+            type: ''
+          };
+          break;
+      }
+
+    };
+    reader.readAsBinaryString(file);
   }
 }
