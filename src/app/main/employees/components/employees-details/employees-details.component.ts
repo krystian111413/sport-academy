@@ -211,6 +211,9 @@ export class EmployeesDetailsComponent implements OnInit {
       case 'swimmingInstructor':
         data = this.employee.permissions.usefulPermissions.swimmingInstructorImage;
         break;
+      case 'helmsman':
+        data = this.employee.permissions.usefulPermissions.helmsmanImage;
+        break;
       case 'yachtSailor':
         data = this.employee.permissions.usefulPermissions.yachtSailorImage;
         break;
@@ -266,6 +269,12 @@ export class EmployeesDetailsComponent implements OnInit {
           break;
         case 'swimmingInstructor':
           this.employee.permissions.usefulPermissions.swimmingInstructorImage = {
+            data: btoa(reader.result.toString()),
+            type: ''
+          };
+          break;
+        case 'helmsman':
+          this.employee.permissions.usefulPermissions.helmsmanImage = {
             data: btoa(reader.result.toString()),
             type: ''
           };
@@ -327,6 +336,8 @@ export class EmployeesDetailsComponent implements OnInit {
         return !!this.employee.permissions.usefulPermissions.frogmanImage;
       case 'swimmingInstructor':
         return !!this.employee.permissions.usefulPermissions.swimmingInstructorImage;
+      case 'helmsman':
+        return !!this.employee.permissions.usefulPermissions.helmsmanImage;
       case 'yachtSailor':
         return !!this.employee.permissions.usefulPermissions.yachtSailorImage;
       case 'anotherPermission':
@@ -347,10 +358,10 @@ export class EmployeesDetailsComponent implements OnInit {
       if (value) {
         this.employeesService.deleteInstance(this.id).subscribe(value => {
           if (value) {
-            this.toastrService.success("Pracownik usunięty");
+            this.toastrService.success('Pracownik usunięty');
             this.location.back();
           } else {
-            this.toastrService.warning("Nie można usunąć pracownika");
+            this.toastrService.warning('Nie można usunąć pracownika');
           }
         });
       }

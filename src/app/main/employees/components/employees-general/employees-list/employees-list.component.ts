@@ -1,10 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ColDef} from "ag-grid-community";
-import {EmployeesService} from "../../../services/employees.service";
-import {Employee} from "../../../models/employee";
-import {Router} from "@angular/router";
+import {ColDef} from 'ag-grid-community';
+import {EmployeesService} from '../../../services/employees.service';
+import {Employee} from '../../../models/employee';
+import {Router} from '@angular/router';
 import {AgFilterTypes} from '../../../../../shared/ag-list/ag-list/ag-list.component';
 import {GridDateComperator} from '../../../../../shared/date-utils/grid-date-comperator';
+import {ConfirmDialogService} from '../../../../../shared/confirm-dialog/services/confirm-dialog.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'employees-list',
@@ -30,21 +32,21 @@ export class EmployeesListComponent implements OnInit {
         return `<a style="color: dodgerblue; cursor: pointer">${params.value}</a>`;
       }
 
-    },{
+    }, {
       field: 'surName',
       headerName: 'Nazwisko',
       headerTooltip: 'Nazwisko',
       sortable: true,
       filter: true,
       resizable: true
-    },{
+    }, {
       field: `city`,
       headerName: 'Miasto',
       headerTooltip: 'Miasto',
       sortable: true,
       filter: true,
       resizable: true
-    },{
+    }, {
       field: `dealEndDate`,
       headerName: 'Data końca umowy',
       headerTooltip: 'Data końca umowy',
@@ -56,19 +58,53 @@ export class EmployeesListComponent implements OnInit {
         }
       },
       resizable: true
-    },
+    }, {
+      field: 'id',
+      headerName: '',
+      cellRenderer: params => {
+        return `<i class="fa fa-trash"></i>`;
+      },
+      cellStyle: {
+        cursor: 'pointer',
+        'font-size': 'xx-large'
+      },
+      onCellClicked: event => {
+        this.onDelete(event.value);
+      }
+    }
   ];
 
   constructor(private employeesService: EmployeesService,
-              private router: Router) {
+              private router: Router,
+              private confirmDialogService: ConfirmDialogService,
+              private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
     this.columns = this.employeesListColumnsConfig;
-    this.employeesService.getAll().subscribe(employees => {
-      this.employees = employees;
-    })
+    this.loadData();
   }
 
+  private loadData() {
+    this.employeesService.getAll().subscribe(employees => {
+      this.employees = employees;
+    });
+  }
+
+  onDelete(id: string): void {
+    this.confirmDialogService.open({message: 'Czy na pewno chesz usunąć pracownika?'}).subscribe(value => {
+      if (value) {
+        this.employeesService.deleteInstance(id).subscribe(value => {
+          if (value) {
+            this.toastrService.success("Pracownik usunięty");
+            this.loadData();
+          } else {
+            this.toastrService.warning("Nie można usunąć pracownika");
+          }
+        });
+      }
+    });
+
+  }
 
 }

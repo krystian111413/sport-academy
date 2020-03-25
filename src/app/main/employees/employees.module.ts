@@ -12,7 +12,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {DatePickerModule} from '../../shared/date-picker/date-picker.module';
-import {MatCheckboxModule, MatSelectModule} from '@angular/material';
+import {MatCheckboxModule, MatProgressBarModule, MatSelectModule} from '@angular/material';
 import {EmployeesAddComponent} from './components/employees-add/employees-add.component';
 import { ImageDialogComponent } from './components/image-dialog/image-dialog.component';
 import {ConfirmDialogModule} from '../../shared/confirm-dialog/confirm-dialog.module';
@@ -32,7 +32,8 @@ import {ConfirmDialogModule} from '../../shared/confirm-dialog/confirm-dialog.mo
     DatePickerModule,
     MatSelectModule,
     MatCheckboxModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    MatProgressBarModule
   ],
   entryComponents: [ImageDialogComponent]
 })
