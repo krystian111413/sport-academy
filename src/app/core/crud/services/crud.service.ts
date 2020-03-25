@@ -44,7 +44,7 @@ export abstract class CrudService<INSTANCE_DTO, INSTANCE_CREATE_DTO> {
         });
     }
 
-    deleteInstance(id: number): Observable<boolean> {
+    deleteInstance(id: number | string): Observable<boolean> {
         return new Observable((observer: Observer<boolean>) => {
             this.restService.delete(`${this.path}/${id}`).subscribe(() => {
                 observer.next(true);

@@ -14,7 +14,7 @@ export class NavigationComponent {
 
   menuConfigItems: NavMenuItem[] = [
     {
-      name: 'Employees',
+      name: 'Pracownicy',
       url: '/employees',
       iconName: 'people'
     }

@@ -8,6 +8,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {ImageDialogComponent} from '../image-dialog/image-dialog.component';
 import {MatDialog} from '@angular/material';
 import {Employee} from '../../models/employee';
+import {ConfirmDialogService} from '../../../../shared/confirm-dialog/services/confirm-dialog.service';
 
 @Component({
   selector: 'employees-details',
@@ -32,6 +33,7 @@ export class EmployeesDetailsComponent implements OnInit {
   private employee: Employee;
 
   constructor(private employeesService: EmployeesService,
+              private confirmDialogService: ConfirmDialogService,
               public dialog: MatDialog,
               formBuilder: FormBuilder,
               activatedRoute: ActivatedRoute,
@@ -311,6 +313,9 @@ export class EmployeesDetailsComponent implements OnInit {
   }
 
   isPhoto(fileName: string): boolean {
+    if (!this.employee) {
+      return false;
+    }
     switch (fileName) {
       case 'deal':
         return !!this.employee.deal.image;
@@ -335,5 +340,21 @@ export class EmployeesDetailsComponent implements OnInit {
       case 'studentCard':
         return !!this.employee.permissions.studentCard.image;
     }
+  }
+
+  onDelete(): void {
+    this.confirmDialogService.open({message: 'Czy na pewno chesz usunąć pracownika?'}).subscribe(value => {
+      if (value) {
+        this.employeesService.deleteInstance(this.id).subscribe(value => {
+          if (value) {
+            this.toastrService.success("Pracownik usunięty");
+            this.location.back();
+          } else {
+            this.toastrService.warning("Nie można usunąć pracownika");
+          }
+        });
+      }
+    });
+
   }
 }

@@ -15,6 +15,7 @@ import {DatePickerModule} from '../../shared/date-picker/date-picker.module';
 import {MatCheckboxModule, MatSelectModule} from '@angular/material';
 import {EmployeesAddComponent} from './components/employees-add/employees-add.component';
 import { ImageDialogComponent } from './components/image-dialog/image-dialog.component';
+import {ConfirmDialogModule} from '../../shared/confirm-dialog/confirm-dialog.module';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ImageDialogComponent } from './components/image-dialog/image-dialog.com
     MatButtonModule,
     DatePickerModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ConfirmDialogModule
   ],
   entryComponents: [ImageDialogComponent]
 })

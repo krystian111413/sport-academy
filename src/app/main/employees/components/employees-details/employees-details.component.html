@@ -63,7 +63,7 @@
 
       <mat-card class="mat-elevation-z0">
         <mat-card-title>Umowa</mat-card-title>
-        <input type="file" class="mb-8"  (change)="onFileSelected($event, 'deal')">
+        <input type="file" accept=".png,.jpg" class="mb-8"  (change)="onFileSelected($event, 'deal')">
         <button mat-raised-button (click)="showImage('deal')" [disabled]="!isPhoto('deal')"><mat-icon>photo</mat-icon>
           Pokaż zdjęcie
         </button>
@@ -90,7 +90,7 @@
 
           <form [formGroup]="lifeguardForm">
             <mat-card-subtitle>Ratownik Wodny</mat-card-subtitle>
-            <input type="file" class="mb-8"  (change)="onFileSelected($event, 'lifeguard')">
+            <input type="file" accept=".png,.jpg" class="mb-8"  (change)="onFileSelected($event, 'lifeguard')">
             <button mat-raised-button (click)="showImage('lifeguard')" [disabled]="!isPhoto('lifeguard')"><mat-icon>photo</mat-icon>
               Pokaż zdjęcie
             </button>
@@ -99,7 +99,7 @@
 
           <form [formGroup]="firstAidForm">
             <mat-card-subtitle>Kurs Kwalifikowanej Pierwszej Pomocy</mat-card-subtitle>
-            <input type="file" class="mb-8"  (change)="onFileSelected($event, 'firstAid')">
+            <input type="file" accept=".png,.jpg" class="mb-8"  (change)="onFileSelected($event, 'firstAid')">
             <button mat-raised-button (click)="showImage('firstAid')" [disabled]="!isPhoto('firstAid')"><mat-icon>photo</mat-icon>
               Pokaż zdjęcie
             </button>
@@ -112,28 +112,28 @@
             <mat-label>Uprawnienia</mat-label>
             <div>
               <mat-checkbox formControlName="frogman">Płetwonurek</mat-checkbox>
-              <input type="file" class="mb-8"  (change)="onFileSelected($event, 'frogman')">
+              <input type="file" accept=".png,.jpg" class="mb-8"  (change)="onFileSelected($event, 'frogman')">
               <button mat-raised-button (click)="showImage('frogman')" [disabled]="!isPhoto('frogman')"><mat-icon>photo</mat-icon>
                 Pokaż zdjęcie
               </button>
             </div>
             <div>
               <mat-checkbox formControlName="yachtSailor">Żeglarz Jachtowy</mat-checkbox>
-              <input type="file" class="mb-8"  (change)="onFileSelected($event, 'yachtSailor')">
+              <input type="file" accept=".png,.jpg" class="mb-8"  (change)="onFileSelected($event, 'yachtSailor')">
               <button mat-raised-button (click)="showImage('yachtSailor')" [disabled]="!isPhoto('yachtSailoe')"><mat-icon>photo</mat-icon>
                 Pokaż zdjęcie
               </button>
             </div>
             <div>
               <mat-checkbox formControlName="helmsman">Sternik Motorowodny</mat-checkbox>
-              <input type="file" class="mb-8"  (change)="onFileSelected($event, 'helmsman')">
+              <input type="file" accept=".png,.jpg" class="mb-8"  (change)="onFileSelected($event, 'helmsman')">
               <button mat-raised-button (click)="showImage('helmsman')" [disabled]="!isPhoto('helmsman')"><mat-icon>photo</mat-icon>
                 Pokaż zdjęcie
               </button>
             </div>
             <div>
               <mat-checkbox formControlName="swimmingInstructor">Instruktor Pływania</mat-checkbox>
-              <input type="file" class="mb-8"  (change)="onFileSelected($event, 'swimmingInstructor')">
+              <input type="file" accept=".png,.jpg" class="mb-8"  (change)="onFileSelected($event, 'swimmingInstructor')">
               <button mat-raised-button (click)="showImage('swimmingInstructor')" [disabled]="!isPhoto('swimmingInstructor')"><mat-icon>photo</mat-icon>
                 Pokaż zdjęcie
               </button>
@@ -143,14 +143,14 @@
             <mat-label>Inne uprawnienia</mat-label>
             <input matInput placeholder="Inne..." formControlName="anotherPermission">
           </mat-form-field>
-          <input type="file" class="mb-8"  (change)="onFileSelected($event, 'anotherPermission')">
+          <input type="file" accept=".png,.jpg" class="mb-8"  (change)="onFileSelected($event, 'anotherPermission')">
           <button mat-raised-button (click)="showImage('anotherPermission')" [disabled]="!isPhoto('anotherPermission')"><mat-icon>photo</mat-icon>
             Pokaż zdjęcie
           </button>
 
           <form [formGroup]="medicalExaminationForm">
             <mat-card-subtitle>Badania lekarskie</mat-card-subtitle>
-            <input type="file" class="mb-8"  (change)="onFileSelected($event, 'medicalExamination')">
+            <input type="file" accept=".png,.jpg" class="mb-8"  (change)="onFileSelected($event, 'medicalExamination')">
             <button mat-raised-button (click)="showImage('medicalExamination')" [disabled]="!isPhoto('medicalExamination')"><mat-icon>photo</mat-icon>
               Pokaż zdjęcie
             </button>
@@ -160,7 +160,7 @@
 
           <form [formGroup]="OHSTestsForm">
             <mat-card-subtitle>Badania BHP</mat-card-subtitle>
-            <input type="file" class="mb-8"  (change)="onFileSelected($event, 'ohstests')">
+            <input type="file" accept=".png,.jpg" class="mb-8"  (change)="onFileSelected($event, 'ohstests')">
             <button mat-raised-button (click)="showImage('ohstests')" [disabled]="!isPhoto('ohstests')"><mat-icon>photo</mat-icon>
               Pokaż zdjęcie
             </button>
@@ -170,7 +170,7 @@
 
           <form [formGroup]="sanelForm">
             <mat-card-subtitle>Sanepid</mat-card-subtitle>
-            <input type="file" class="mb-8"  (change)="onFileSelected($event, 'sanel')">
+            <input type="file" accept=".png,.jpg" class="mb-8"  (change)="onFileSelected($event, 'sanel')">
             <button mat-raised-button (click)="showImage('sanel')" [disabled]="!isPhoto('sanel')"><mat-icon>photo</mat-icon>
               Pokaż zdjęcie
             </button>
@@ -179,7 +179,7 @@
 
           <form [formGroup]="studentCardForm">
             <mat-card-subtitle>Legitymacja Studencka</mat-card-subtitle>
-            <input type="file" class="mb-8"  (change)="onFileSelected($event, 'studentCard')">
+            <input type="file" accept=".png,.jpg" class="mb-8"  (change)="onFileSelected($event, 'studentCard')">
             <button mat-raised-button (click)="showImage('studentCard')" [disabled]="!isPhoto('studentCard')"><mat-icon>photo</mat-icon>
               Pokaż zdjęcie
             </button>
@@ -192,6 +192,10 @@
       <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!formGroup.valid || !formGroup.dirty">
         <mat-icon>save</mat-icon>
         Zapisz
+      </button>
+      <button mat-raised-button color="warn" (click)="onDelete()">
+        <mat-icon>delete</mat-icon>
+        Usuń
       </button>
     </mat-card-actions>
   </mat-card>
