@@ -30,7 +30,7 @@ export class EmployeesDetailsComponent implements OnInit {
   studentCardForm: FormGroup;
   dealForm: FormGroup;
   usefulPermissionsGroup: FormGroup;
-  private employee: Employee;
+  employee: Employee;
 
   constructor(private employeesService: EmployeesService,
               private confirmDialogService: ConfirmDialogService,
@@ -50,7 +50,7 @@ export class EmployeesDetailsComponent implements OnInit {
       dealType: ['', Validators.required],
       place: ['', Validators.required],
       startDate: ['', Validators.required],
-      endDate: ['', Validators.required]
+      endDate: ['']
     });
     this.studentCardForm = formBuilder.group({
       endDate: ['']

@@ -45,7 +45,7 @@ export class EmployeesAddComponent implements OnInit {
       place: ['', Validators.required],
       dealType: ['', Validators.required],
       startDate: ['', Validators.required],
-      endDate: ['', Validators.required]
+      endDate: ['']
     });
     this.studentCardForm = formBuilder.group({
       endDate: ['']
