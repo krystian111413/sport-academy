@@ -1,9 +1,9 @@
 <div fxLayout="row" class="general" (click)="setNotificationAsClicked(notificationItem.id)" [class.wasClicked]="notificationItem.checked" routerLink="/main/employees/{{notificationItem.employeeId}}">
-  <div fxLayout="column" class="p-8" fxFlex="40">
+  <div fxLayout="column" class="p-8 w-100">
     <p><strong>{{notificationItem.employeeFirstName}}</strong></p>
     <p><strong>{{notificationItem.employeeSurName}}</strong></p>
   </div>
-  <div fxFlex="75">
+  <div>
     <p class="desc">{{notificationItem.description}}</p>
   </div>
   <div class="container" *ngIf="!notificationItem.checked" >
