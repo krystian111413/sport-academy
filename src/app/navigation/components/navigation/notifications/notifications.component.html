@@ -1,5 +1,5 @@
-<button mat-button [matMenuTriggerFor]="menu" (menuClosed)="downloadData()">
-  <mat-icon>notifications</mat-icon>
+<button mat-button [matMenuTriggerFor]="menu">
+  <mat-icon [matBadge]="getNotificationUncheckedCount()" [matBadgeHidden]="getNotificationUncheckedCount() === 0">notifications</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
   <notification-item *ngFor="let notification of notifications" [notificationItem]="notification"></notification-item>

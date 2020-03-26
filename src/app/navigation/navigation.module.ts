@@ -14,6 +14,7 @@ import { NotificationsComponent } from './components/navigation/notifications/no
 import {MatMenuModule} from '@angular/material/menu';
 import { NotificationItemComponent } from './components/navigation/notifications/notification-item/notification-item.component';
 import { ProfilerComponent } from './components/navigation/profiler/profiler.component';
+import {MatBadgeModule} from '@angular/material';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ProfilerComponent } from './components/navigation/profiler/profiler.com
     RouterModule,
     FlexModule,
     ProjectSelectorModule,
-    MatMenuModule
+    MatMenuModule,
+    MatBadgeModule
   ],
   exports: [
     NavigationComponent

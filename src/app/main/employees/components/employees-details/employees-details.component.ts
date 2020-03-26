@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EmployeesService} from '../../services/employees.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -34,6 +34,7 @@ export class EmployeesDetailsComponent implements OnInit {
 
   constructor(private employeesService: EmployeesService,
               private confirmDialogService: ConfirmDialogService,
+              private router: Router,
               public dialog: MatDialog,
               formBuilder: FormBuilder,
               activatedRoute: ActivatedRoute,
@@ -118,10 +119,10 @@ export class EmployeesDetailsComponent implements OnInit {
   onSave(): void {
     this.employeesService.update(this.id, this.formGroup.value).subscribe(success => {
       if (success) {
-        this.toastrService.success('Employee saved');
-        this.location.back();
+        this.toastrService.success('Zmiany zapisane');
+        this.router.navigateByUrl('/main/employees')
       } else {
-        this.toastrService.error('Error occurs while saving employee');
+        this.toastrService.error('Błąd podczas zapisywania pracownika');
       }
     });
   }
