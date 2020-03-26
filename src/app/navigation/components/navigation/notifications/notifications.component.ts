@@ -17,7 +17,7 @@ export class NotificationsComponent implements OnInit {
     this.downloadData();
   }
 
-  private downloadData() {
+  downloadData() {
     this.employeesService.getAll().subscribe(value => this.notifications = value);
   }
 }
