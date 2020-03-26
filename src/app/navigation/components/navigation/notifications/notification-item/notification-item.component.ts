@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Notification} from '../../../../models/notifiaction';
+import {NotificationEmployeesService} from '../../../../services/notification-employees.service';
 
 @Component({
   selector: 'notification-item',
@@ -8,9 +9,13 @@ import {Notification} from '../../../../models/notifiaction';
 })
 export class NotificationItemComponent implements OnInit {
   @Input() notificationItem: Notification;
-  constructor() { }
+  constructor(private notificationEmployeesService: NotificationEmployeesService) { }
 
   ngOnInit() {
   }
 
+  setNotificationAsClicked(id: string) {
+    this.notificationItem.checked = true;
+    this.notificationEmployeesService.update(id, this.notificationItem).subscribe();
+  }
 }

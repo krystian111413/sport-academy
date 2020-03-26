@@ -14,7 +14,10 @@ export class NotificationsComponent implements OnInit {
   constructor(private employeesService: NotificationEmployeesService) { }
 
   ngOnInit(): void {
-    this.employeesService.getAll().subscribe(value => this.notifications = value)
+    this.downloadData();
   }
 
+  private downloadData() {
+    this.employeesService.getAll().subscribe(value => this.notifications = value);
+  }
 }

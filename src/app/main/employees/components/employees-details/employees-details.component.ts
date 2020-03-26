@@ -106,11 +106,13 @@ export class EmployeesDetailsComponent implements OnInit {
       permissions: this.permissionsGroup
 
     });
-    this.id = activatedRoute.snapshot.paramMap.get('id');
+    activatedRoute.params.subscribe(value => {
+      this.id = value['id'];
+      this.downloadEmployeeAndApplyToForm();
+    })
   }
 
   ngOnInit(): void {
-    this.downloadEmployeeAndApplyToForm();
   }
 
   onSave(): void {
@@ -125,6 +127,7 @@ export class EmployeesDetailsComponent implements OnInit {
   }
 
   private downloadEmployeeAndApplyToForm(): void {
+    this.employee = undefined;
     this.employeesService.getInstance(this.id).subscribe(value => {
       this.formGroup.setValue(
         {

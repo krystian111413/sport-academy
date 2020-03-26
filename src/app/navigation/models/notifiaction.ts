@@ -1,8 +1,10 @@
 export interface Notification {
   id: string;
-  name: string;
-  surname: string;
-  city: string;
+  topic: string;
+  createDate: string;
+  checked: boolean;
+  employeeId: string;
+  employeeFirstName: string;
+  employeeSurName: string;
   description: string;
-  wasClicked: boolean;
 }

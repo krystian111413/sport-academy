@@ -1,8 +1,10 @@
-<div fxLayout="row" class="general" [class.wasClicked]="notificationItem.wasClicked" routerLink="/main/employees/{{notificationItem.id}}">
-  <div fxLayout="column" class="p-8">
-    <p><strong>{{notificationItem.name}}</strong></p>
-    <p><strong>{{notificationItem.surname}}</strong></p>
+<div fxLayout="row" class="general" (click)="setNotificationAsClicked(notificationItem.id)" [class.wasClicked]="notificationItem.checked" routerLink="/main/employees/{{notificationItem.employeeId}}">
+  <div fxLayout="column" class="p-8" fxFlex="40">
+    <p><strong>{{notificationItem.employeeFirstName}}</strong></p>
+    <p><strong>{{notificationItem.employeeSurName}}</strong></p>
   </div>
-  <p class="desc">{{notificationItem.description}}</p>
+  <div fxFlex="75">
+    <p class="desc">{{notificationItem.description}}</p>
+  </div>
 </div>
 <mat-divider></mat-divider>
