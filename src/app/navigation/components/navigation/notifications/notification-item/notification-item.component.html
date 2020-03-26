@@ -6,5 +6,8 @@
   <div fxFlex="75">
     <p class="desc">{{notificationItem.description}}</p>
   </div>
+  <div class="container" *ngIf="!notificationItem.checked" >
+    <mat-icon color="primary">lens</mat-icon>
+  </div>
 </div>
 <mat-divider></mat-divider>
