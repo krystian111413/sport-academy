@@ -51,15 +51,15 @@ export class EmployeesAddComponent implements OnInit {
       endDate: ['']
     });
     this.sanelForm = formBuilder.group({
-      endDate: ['', Validators.required]
+      endDate: ['']
     });
     this.medicalExaminationForm = formBuilder.group({
-      refreshedDate: ['', Validators.required],
-      endDate: ['', Validators.required]
+      refreshedDate: [''],
+      endDate: ['']
     });
     this.OHSTestsForm = formBuilder.group({
-      refreshedDate: ['', Validators.required],
-      endDate: ['', Validators.required]
+      refreshedDate: [''],
+      endDate: ['']
     });
     this.lifeguardForm = formBuilder.group({
       releaseDate: ['', Validators.required]

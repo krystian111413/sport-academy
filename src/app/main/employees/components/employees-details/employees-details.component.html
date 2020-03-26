@@ -106,7 +106,7 @@
             <button mat-raised-button (click)="showImage('firstAid')" [disabled]="!isPhoto('firstAid')"><mat-icon>photo</mat-icon>
               Pokaż zdjęcie
             </button>
-            <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
+            <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data rozpoczęcia"></date-picker>
             <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
           </form>
 
@@ -157,8 +157,8 @@
             <button mat-raised-button (click)="showImage('medicalExamination')" [disabled]="!isPhoto('medicalExamination')"><mat-icon>photo</mat-icon>
               Pokaż zdjęcie
             </button>
-            <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
-            <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
+            <date-picker formControlName="refreshedDate" appearance="outline" placeholder="Data rozpoczęcia"></date-picker>
+            <date-picker formControlName="endDate" appearance="outline" placeholder="Data zakończenia"></date-picker>
           </form>
 
           <form [formGroup]="OHSTestsForm">
@@ -167,8 +167,8 @@
             <button mat-raised-button (click)="showImage('ohstests')" [disabled]="!isPhoto('ohstests')"><mat-icon>photo</mat-icon>
               Pokaż zdjęcie
             </button>
-            <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
-            <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
+            <date-picker formControlName="refreshedDate" appearance="outline" placeholder="Data rozpoczęcia"></date-picker>
+            <date-picker formControlName="endDate" appearance="outline" placeholder="Data zakończenia"></date-picker>
           </form>
 
           <form [formGroup]="sanelForm">
@@ -177,7 +177,7 @@
             <button mat-raised-button (click)="showImage('sanel')" [disabled]="!isPhoto('sanel')"><mat-icon>photo</mat-icon>
               Pokaż zdjęcie
             </button>
-            <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
+            <date-picker formControlName="endDate" appearance="outline" placeholder="Data zakończenia"></date-picker>
           </form>
 
           <form [formGroup]="studentCardForm">

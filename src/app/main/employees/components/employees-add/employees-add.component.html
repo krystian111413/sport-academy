@@ -91,7 +91,7 @@
 
           <form [formGroup]="firstAidForm">
             <mat-card-subtitle>Kurs Kwalifikowanej Pierwszej Pomocy</mat-card-subtitle>
-            <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
+            <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data rozpoczęcia"></date-picker>
             <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
           </form>
 
@@ -118,19 +118,19 @@
 
           <form [formGroup]="medicalExaminationForm">
             <mat-card-subtitle>Badania lekarskie</mat-card-subtitle>
-            <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
-            <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
+            <date-picker formControlName="refreshedDate" appearance="outline" placeholder="Data rozpoczęcia"></date-picker>
+            <date-picker formControlName="endDate" appearance="outline" placeholder="Data zakończenia"></date-picker>
           </form>
 
           <form [formGroup]="OHSTestsForm">
             <mat-card-subtitle>Badania BHP</mat-card-subtitle>
-            <date-picker formControlName="refreshedDate" appearance="outline" [isRequired]="true" placeholder="Data odświeżenia"></date-picker>
-            <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
+            <date-picker formControlName="refreshedDate" appearance="outline" placeholder="Data rozpoczęcia"></date-picker>
+            <date-picker formControlName="endDate" appearance="outline" placeholder="Data zakończenia"></date-picker>
           </form>
 
           <form [formGroup]="sanelForm">
             <mat-card-subtitle>Sanepid</mat-card-subtitle>
-            <date-picker formControlName="endDate" appearance="outline" [isRequired]="true" placeholder="Data zakończenia"></date-picker>
+            <date-picker formControlName="endDate" appearance="outline" placeholder="Data zakończenia"></date-picker>
           </form>
 
           <form [formGroup]="studentCardForm">

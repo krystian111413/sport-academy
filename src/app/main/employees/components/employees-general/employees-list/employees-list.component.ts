@@ -88,6 +88,9 @@ export class EmployeesListComponent implements OnInit {
   private loadData() {
     this.employeesService.getAll().subscribe(employees => {
       this.employees = employees;
+    }, error => {
+      this.employees = [];
+      this.toastrService.error("Problem z załadowaniem pracowników");
     });
   }
 
