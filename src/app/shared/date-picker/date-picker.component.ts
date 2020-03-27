@@ -1,7 +1,8 @@
 import {Component, forwardRef, Input} from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
-import {MatDatepickerInputEvent} from '@angular/material';
+import {DateAdapter, MatDatepickerInputEvent} from '@angular/material';
 import {MAT_DATE_FORMATS} from "@angular/material/core";
+import {APP_DATE_FORMATS, AppDateAdapter} from './format-datepicker';
 
 export const MY_FORMATS = {
     parse: {
@@ -20,7 +21,9 @@ export const MY_FORMATS = {
     styleUrls: ['./date-picker.component.scss'],
     providers: [
         {provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => DatePickerComponent), multi: true},
-        {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS}]
+        {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS},
+      {provide: DateAdapter, useClass: AppDateAdapter},
+    ]
 })
 export class DatePickerComponent implements ControlValueAccessor {
 
