@@ -54,10 +54,14 @@ a {
   }
 }
 img {
-  margin-top: 8px;
-  max-width: 45px;
+  max-width: 35px;
 }
 
 .padding-content {
   padding: 24px;
+}
+
+.logo {
+  cursor: pointer;
+  text-align: center;
 }

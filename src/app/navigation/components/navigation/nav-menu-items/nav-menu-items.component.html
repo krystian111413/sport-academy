@@ -1,7 +1,0 @@
-<mat-nav-list class="pt-0">
-  <div *ngFor="let item of items; let i = index" fxLayout="row" class="pl-16 p-12 item"
-       [class.selected]="isSelectedItem(item.url) || isDefaultPath(i)" [routerLink]="item.url">
-    <mat-icon>{{item.iconName}}</mat-icon>
-    <span mat-list-item class="ml-16">{{item.name}}</span>
-  </div>
-</mat-nav-list>
