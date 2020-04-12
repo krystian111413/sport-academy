@@ -10,6 +10,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  isLoginProgress = false;
 
   constructor(formBuilder: FormBuilder,
               private loginService: LoginService,
@@ -24,10 +25,13 @@ export class LoginComponent implements OnInit {
   }
 
   requestToLogin(): void {
+    this.isLoginProgress = true;
     this.loginService.login(this.loginForm.value).subscribe(value => {
       this.loginService.onloginSuccessful(this.loginForm.value);
-    },error => {
-      this.toastrService.error('Zły login lub hasło!')
+      this.isLoginProgress = false;
+    }, error => {
+      this.toastrService.error('Zły login lub hasło!');
+      this.isLoginProgress = false;
     });
   }
 }

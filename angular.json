@@ -55,6 +55,14 @@
                 }
               ]
             },
+            "hmr-prod": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmr.prod.ts"
+                }
+              ]
+            },
             "stage": {
               "optimization": true,
               "sourceMap": false,
@@ -86,6 +94,10 @@
             "hmr": {
               "hmr": true,
               "browserTarget": "blades:build:hmr"
+            },
+            "hmr-prod": {
+              "hmr": true,
+              "browserTarget": "blades:build:hmr-prod"
             },
             "stage": {
               "browserTarget": "blades:build:stage"

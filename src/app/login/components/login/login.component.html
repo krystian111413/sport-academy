@@ -1,5 +1,8 @@
 <div class="login">
   <mat-card>
+    <div class="mb-8">
+      <mat-progress-bar mode="indeterminate" *ngIf="isLoginProgress"></mat-progress-bar>
+    </div>
     <h2-heading>Login</h2-heading>
     <form [formGroup]="loginForm">
       <mat-form-field appearance="outline">
