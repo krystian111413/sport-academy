@@ -24,7 +24,7 @@ export class AgListComponent {
   @Input() showProgressBar = true;
   @Input() icon?: string;
   @Input() headerTitle: string;
-  @Input() sizeColumnsToFit? = true;
+  @Input() sizeColumnsToFit = true;
   @Output() selectionChanged: EventEmitter<AgGridApi> = new EventEmitter();
   @Output() agGridApi: EventEmitter<AgGridApi> = new EventEmitter<AgGridApi>();
   private gridApi: AgGridApi;
@@ -41,11 +41,15 @@ export class AgListComponent {
     this.gridApi = agGridApi;
   }
 
-  fitColumns():void {
+  fitColumns(): void {
     this.gridApi.api.sizeColumnsToFit();
   }
 
-  restoreColumns():void {
+  restoreColumns(): void {
     this.gridApi.columnApi.resetColumnState();
+  }
+
+  downloadAsCSV(): void {
+    this.gridApi.api.exportDataAsCsv();
   }
 }

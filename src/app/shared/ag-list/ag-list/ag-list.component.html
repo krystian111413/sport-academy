@@ -5,11 +5,14 @@
   <div fxLayout="row" class="header">
     <h2-heading [icon]="icon">{{headerTitle}}</h2-heading>
     <div class="buttons">
-    <button matTooltip="Fit columns to grid" mat-icon-button class="mb-8" (click)="fitColumns()">
+    <button matTooltip="rozstaw kolumny" mat-icon-button class="mb-8" (click)="fitColumns()">
       <mat-icon>view_column</mat-icon>
     </button>
-    <button matTooltip="Restore columns" mat-icon-button class="mb-8" (click)="restoreColumns()">
+    <button matTooltip="przywróć kolumny" mat-icon-button class="mb-8" (click)="restoreColumns()">
       <mat-icon>refresh</mat-icon>
+    </button>
+    <button matTooltip="pobierz do pliku" mat-icon-button class="mb-8" (click)="downloadAsCSV()">
+      <mat-icon>get_app</mat-icon>
     </button>
     </div>
   </div>
