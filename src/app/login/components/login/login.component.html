@@ -1,4 +1,4 @@
-<div class="login">
+  <div class="login">
   <mat-card>
     <div class="mb-8">
       <mat-progress-bar mode="indeterminate" *ngIf="isLoginProgress"></mat-progress-bar>
@@ -15,7 +15,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Hasło</mat-label>
         <div fxLayout="row">
-          <input type="password" matInput formControlName="password" placeholder="Podaj hasło...">
+          <input type="password" matInput formControlName="password" placeholder="Podaj hasło..." (keyup.enter)="requestToLogin()">
           <mat-icon>edit</mat-icon>
         </div>
       </mat-form-field>
