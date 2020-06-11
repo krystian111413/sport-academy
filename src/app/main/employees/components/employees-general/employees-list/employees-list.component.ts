@@ -25,6 +25,7 @@ export class EmployeesListComponent implements OnInit {
       sortable: true,
       filter: true,
       resizable: true,
+      minWidth: 100,
       onCellClicked: event => {
         this.router.navigateByUrl(`/main/employees/${event.data.id}`);
       },
@@ -38,14 +39,16 @@ export class EmployeesListComponent implements OnInit {
       headerTooltip: 'Nazwisko',
       sortable: true,
       filter: true,
-      resizable: true
+      resizable: true,
+      minWidth: 100
     }, {
       field: `city`,
       headerName: 'Miasto',
       headerTooltip: 'Miasto',
       sortable: true,
       filter: true,
-      resizable: true
+      resizable: true,
+      minWidth: 100
     }, {
       field: `dealEndDate`,
       headerName: 'Data końca umowy',
@@ -57,7 +60,8 @@ export class EmployeesListComponent implements OnInit {
           return GridDateComperator.dateComparator(cellValue, filterLocalDateAtMidnight);
         }
       },
-      resizable: true
+      resizable: true,
+      minWidth: 100
     }, {
       field: 'id',
       headerName: '',
@@ -70,7 +74,8 @@ export class EmployeesListComponent implements OnInit {
       },
       onCellClicked: event => {
         this.onDelete(event.value);
-      }
+      },
+      minWidth: 100
     }
   ];
 
